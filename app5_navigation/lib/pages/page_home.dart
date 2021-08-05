@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'page_01.dart';
+import 'page_02.dart';
+
+class PageHome extends StatelessWidget
+{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("App5 - navigation"),
+      ),
+      body: _body(context),
+    );
+  }
+
+  // Layout: Column ou Row
+  // SingleChildScrollView: adiciona scroll vertical.
+  _body(BuildContext context) {
+    return Container(
+        color: Colors.white,
+        child: Column (
+            children: [
+              _button("Page 01", 1, context),
+              _button("Page 02", 2, context),
+            ]
+        ),
+    );
+  }
+
+
+  _button(String str, int page, BuildContext context) {
+    return ElevatedButton(
+        child: Text(str),
+        onPressed: () {
+          _onClickPageX(str, page, context);
+        }
+    );
+  }
+
+  // Atenção:
+  /*
+    push() retorna um Future que é um recurso assíncrono, por isso,
+    é preciso usar async e await para obter o resultado.
+   */
+  void _onClickPageX(String str, int page, BuildContext context) async
+  {
+    print("Clicou no botão: " + str);
+
+    late Widget wPage = Page01();
+    switch(page) {
+      case 1: wPage = Page01(); break;
+      case 2: wPage = Page02(); break;
+    }
+
+    String retorno = await push( context, wPage);
+    print("retorno: $retorno");
+  }
+
+  // Função utilitária
+  Future push(BuildContext context, Widget page) {
+    return Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return page;
+    }));
+  }
+
+}
