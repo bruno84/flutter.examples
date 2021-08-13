@@ -1,10 +1,8 @@
-import 'package:app11_form/comp/comp_input_form.dart';
+import 'package:app11_form/comp/comp_textformfield.dart';
+import 'package:app11_form/comp/comp_elevatedbutton.dart';
 import 'package:app11_form/pages/page_home.dart';
 import 'package:app11_form/utils/prefs.dart';
 import 'package:flutter/material.dart';
-
-import '../comp/comp_button.dart';
-
 
 // OBS: com StatefulWidget, já consigo obter o context como atributo da classe.
 class PageLogin extends StatefulWidget {
@@ -36,7 +34,7 @@ class _PageLogin extends State<PageLogin>
     _initForm();
   }
 
-  _initForm() //async //opção1
+  _initForm() async //opção1
   {
     /*
      Future: classe cujo objeto é preenchido de forma assíncrona.
@@ -45,12 +43,11 @@ class _PageLogin extends State<PageLogin>
      */
 
     // Opção1: await (na intrução) + async (no método)
-    /*
     userEmail = await Prefs.getString("email");
     _contEmail.text = userEmail;
-    */
 
-    // Opção2: objeto Furure + then - async (no método)
+    // Opção2: objeto Future + then - async (no método)
+    /*
     Future<String> futureUserEmail = Prefs.getString("email");
     futureUserEmail.then(
             (String str) {
@@ -58,6 +55,8 @@ class _PageLogin extends State<PageLogin>
           _contEmail.text = userEmail;  // atualizo campo
         }
     );
+    */
+
   }
 
   @override
@@ -81,17 +80,17 @@ class _PageLogin extends State<PageLogin>
     return Form(
       key: _formKey,
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),  // material design: 16
         child: ListView(
           children: [
-            CompInputForm("Email", "Digite seu email", _contEmail,
+            CompTextFormField("Email", "Digite seu email", _contEmail,
                 inputType: TextInputType.emailAddress,
-                inputValidator: _validateLogin,
+                inputValidator: _validateEmail,
                 inputActionNext: _focusPass,
             ),
             SizedBox(height: 20),
 
-            CompInputForm("Senha", "Digite sua senha", _contPass,
+            CompTextFormField("Senha", "Digite sua senha", _contPass,
                 inputType: TextInputType.number,
                 inputObscure: true,
                 inputValidator: _validatePass,
@@ -101,7 +100,7 @@ class _PageLogin extends State<PageLogin>
             ),
             SizedBox(height: 20),
 
-            CompButton("Login", _onClickLogin, height: 50, fontSize: 22, colorBG: Colors.blue),
+            CompElevatedButton("Login", _onClickLogin, height: 50, fontSize: 22, colorBG: Colors.blue),
             SizedBox(height: 20),
           ],
         ),
@@ -117,6 +116,7 @@ class _PageLogin extends State<PageLogin>
   {
     print("_onClickLogin");
 
+    // true: sem erros
     bool flag = _formKey.currentState!.validate();
     if( !flag ) {
       print("Problema de validação");
@@ -136,7 +136,7 @@ class _PageLogin extends State<PageLogin>
   // VALIDATE
   //----------------------------------------------------------------------------
   // OBS: argumento deve ser dynamic !!!
-  String? _validateLogin(dynamic text) {
+  String? _validateEmail(dynamic text) {
     if (text.isEmpty) {
       return "Campo vazio!";
     }

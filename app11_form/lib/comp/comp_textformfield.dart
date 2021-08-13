@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CompInputForm extends StatelessWidget
+class CompTextFormField extends StatelessWidget
 {
   // Atributos:
   TextInputType inputType;
@@ -29,7 +29,7 @@ class CompInputForm extends StatelessWidget
            * ficam entre chaves { ... }
            * na chamada, preciso informar o nome do argumento
   */
-  CompInputForm(
+  CompTextFormField(
       this.labelText,
       this.hintText,
       this.inputController,

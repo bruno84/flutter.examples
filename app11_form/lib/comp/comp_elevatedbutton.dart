@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Objetivo: Componentização de um botão.
-class CompButton extends StatelessWidget
+class CompElevatedButton extends StatelessWidget
 {
   // Atributos:
   String text;
@@ -18,7 +18,7 @@ class CompButton extends StatelessWidget
            * ficam entre chaves { ... }
            * na chamada, preciso informar o nome do argumento
   */
-  CompButton(
+  CompElevatedButton(
       this.text,
       this.onPressed,
       {
