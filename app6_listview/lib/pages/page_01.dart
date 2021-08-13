@@ -20,14 +20,14 @@ class Page01 extends StatelessWidget
       children: [
 
         Expanded(
-          flex: 7,
+          flex: 6,
           child: Container(
             color: Colors.orange
           ),
         ),
 
         Expanded(
-          flex: 3,
+          flex: 4,
           child: Row(
               children: [
                 Expanded(
@@ -49,6 +49,7 @@ class Page01 extends StatelessWidget
       ],
     );
   }
+
 
 
 

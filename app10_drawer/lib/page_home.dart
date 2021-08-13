@@ -39,7 +39,7 @@ class PageHome extends StatelessWidget
   _body1() {
     return Container(
       color: Colors.yellow,
-      alignment: Alignment.topCenter,
+      alignment: Alignment.center,
       child: Text("Corpo 1"),
     );
   }
@@ -47,7 +47,7 @@ class PageHome extends StatelessWidget
   _body2() {
     return Container(
       color: Colors.orange,
-      alignment: Alignment.topCenter,
+      alignment: Alignment.center,
       child: Text("Corpo 2"),
     );
   }

@@ -13,7 +13,7 @@ class PageHome extends StatelessWidget
     );
   }
 
-  // Column ou Row
+  // Column (vertical) ou Row (horizontal)
   // mainAxis: refere-se ao eixo principal
   // * mainAxisSize por padrão é max
   // * mainAxisAlignment por padrão é start
@@ -28,8 +28,8 @@ class PageHome extends StatelessWidget
       width: size.width,
       color: Colors.lightGreen,
       child: Column (
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           _text1(),
           _text1(),

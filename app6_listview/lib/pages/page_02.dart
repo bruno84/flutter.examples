@@ -24,6 +24,7 @@ class Page02 extends StatelessWidget
 
     /*  ListView.builder = monta cada item da lista (é o "adapter" do Android)
         OBS: como saber os parametros do itemBuilder? ver IndexedWidgetBuilder
+        Atencao: itemCount é obrigatório!
      */
     // Stack: empilha elementos. Cuidado com a ordem!
     // BoxDecoration: argumento de Container
@@ -37,9 +38,11 @@ class Page02 extends StatelessWidget
         Stack stack = Stack(
           fit: StackFit.expand,
           children: [
+
             _imgAsset(conteudo.foto),
+
             Container(
-                alignment: Alignment.bottomRight,
+                alignment: Alignment.bottomLeft,
                 child: Container(
                   margin: EdgeInsets.all(20),
                   padding: EdgeInsets.all(20),
@@ -55,6 +58,7 @@ class Page02 extends StatelessWidget
                   ),
                 )
             )
+
           ]
         );
 

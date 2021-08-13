@@ -53,6 +53,9 @@ class _PageHome extends State<PageHome>
       Conteudo("Conteudo1", "assets/images/image1.jpg"),
       Conteudo("Conteudo2", "assets/images/image2.jpg"),
       Conteudo("Conteudo3", "assets/images/image3.jpg"),
+      Conteudo("Conteudo1", "assets/images/image1.jpg"),
+      Conteudo("Conteudo2", "assets/images/image2.jpg"),
+      Conteudo("Conteudo3", "assets/images/image3.jpg"),
     ];
 
     // Widget que será retornado pelo body
@@ -107,8 +110,10 @@ class _PageHome extends State<PageHome>
       },
       child: Stack(
           fit: StackFit.expand,
-          children: [
+          children:
+          [
             _imgAsset(conteudo.foto),
+
             Container(
                 alignment: Alignment.bottomRight,
                 child: Container(

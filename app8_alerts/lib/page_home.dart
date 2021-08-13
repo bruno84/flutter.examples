@@ -63,7 +63,7 @@ class PageHome extends StatelessWidget
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("showSnackBar"),
-          duration: Duration(milliseconds: 1000),
+          duration: Duration(milliseconds: 2000),
           action: SnackBarAction(
             textColor: Colors.yellow,
             label: "Clique aqui!",
@@ -84,7 +84,8 @@ class PageHome extends StatelessWidget
           onWillPop: () async => false,
           child: AlertDialog(
             title: Text("Flutter é muito legal"),
-            actions: <Widget>[
+            actions: [
+
               TextButton (
                 child: Text("Cancelar"),
                 onPressed: () {
@@ -92,6 +93,7 @@ class PageHome extends StatelessWidget
                   Navigator.pop(context);   // Fechar Dialog
                 },
               ),
+
               TextButton (
                 child: Text("OK"),
                 onPressed: () {
@@ -99,6 +101,7 @@ class PageHome extends StatelessWidget
                   Navigator.pop(context);   // Fechar Dialog
                 },
               )
+
             ],
           ),
         );

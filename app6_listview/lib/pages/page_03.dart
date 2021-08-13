@@ -34,7 +34,7 @@ class Page03 extends StatelessWidget
      */
     GridView gridBuilder = GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2
+        crossAxisCount: 2,
       ),
       itemCount: listConteudo.length,
       itemBuilder: (context, index)

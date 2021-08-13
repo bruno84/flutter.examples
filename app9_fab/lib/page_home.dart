@@ -35,21 +35,25 @@ class _PageHomeState extends State<PageHome>
   }
 
   _floatingActionButton() {
-    return Column(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+
         FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () => _onClickFabAdd()
         ),
+
         SizedBox(
-          height: 10,
-          width: 10,
+          height: 20,
+          width: 20,
         ),
+
         FloatingActionButton(
           child: Icon(Icons.remove),
           onPressed: () => _onClickFabReduce()
         )
+
       ],
     );
   }

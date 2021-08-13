@@ -9,9 +9,8 @@ class MyButton extends StatelessWidget
   late Color colorBG;
   late Function() onPressed;
 
-  /* OBS: argum obrigatório: na chamada, não preciso informar nome do argumento
-          argum opcional: na chamada, preciso informar o nome do argumento */
-  // OBS: R
+  /* OBS: argum. obrigatório: na chamada, não preciso informar nome do argumento
+          argum. opcional: na chamada, preciso informar o nome do argumento */
   MyButton(this.text, this.onPressed, {this.fontSize=14, this.colorText=Colors.white, this.colorBG=Colors.black} );
 
   @override
