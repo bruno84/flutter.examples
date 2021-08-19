@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CompTextFormField extends StatelessWidget
 {
@@ -7,12 +8,14 @@ class CompTextFormField extends StatelessWidget
   Color inputColor;
   double inputSize;
   bool inputObscure;
+  int inputMaxLength;
   TextEditingController inputController;
   FormFieldValidator<String>? inputValidator;
   TextInputAction inputAction;
   FocusNode? inputActionNext;
   FocusNode? inputFocusNode;
   Function()? inputActionSubmit;
+  List<TextInputFormatter>? inputListFormatter;
 
   String labelText;
   Color labelColor;
@@ -40,12 +43,14 @@ class CompTextFormField extends StatelessWidget
         this.inputType=TextInputType.text,
         this.inputColor=Colors.black87,
         this.inputSize=20,
+        this.inputMaxLength=50,
         this.inputObscure=false,
         this.inputValidator,
         this.inputAction=TextInputAction.next,
         this.inputActionNext,
         this.inputActionSubmit,
         this.inputFocusNode,
+        this.inputListFormatter,
 
         this.hintColor=Colors.black54,
         this.hintSize=18
@@ -57,12 +62,15 @@ class CompTextFormField extends StatelessWidget
   Widget build(BuildContext context)
   {
     return TextFormField(
+      maxLength: inputMaxLength,
       controller: inputController,
       validator: inputValidator,
       obscureText: inputObscure,
       keyboardType: inputType,
       textInputAction: inputAction,
       focusNode: inputFocusNode,
+
+      inputFormatters: inputListFormatter,
 
       // OBS: permite definir diferentes regras para cada tipo de action
       onFieldSubmitted: (String text) {

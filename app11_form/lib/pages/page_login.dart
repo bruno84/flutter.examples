@@ -3,6 +3,7 @@ import 'package:app11_form/comp/comp_elevatedbutton.dart';
 import 'package:app11_form/pages/page_home.dart';
 import 'package:app11_form/utils/prefs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // OBS: com StatefulWidget, já consigo obter o context como atributo da classe.
 class PageLogin extends StatefulWidget {
@@ -87,6 +88,7 @@ class _PageLogin extends State<PageLogin>
                 inputType: TextInputType.emailAddress,
                 inputValidator: _validateEmail,
                 inputActionNext: _focusPass,
+                inputListFormatter: [ FilteringTextInputFormatter.deny(RegExp('[#%*]')) ],
             ),
             SizedBox(height: 20),
 
@@ -97,6 +99,7 @@ class _PageLogin extends State<PageLogin>
                 inputFocusNode: _focusPass,
                 inputAction: TextInputAction.send,
                 inputActionSubmit: _onClickLogin,
+                inputMaxLength: 20,
             ),
             SizedBox(height: 20),
 

@@ -9,7 +9,6 @@ class PageHome extends StatefulWidget
   _PageHome createState() => _PageHome();
 }
 
-// setState: método que deve ser chamado para redesenhar a tela.
 class _PageHome extends State<PageHome>
 {
   String texto = "Nenhuma opção!";
