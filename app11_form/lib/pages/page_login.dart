@@ -88,7 +88,7 @@ class _PageLogin extends State<PageLogin>
                 inputType: TextInputType.emailAddress,
                 inputValidator: _validateEmail,
                 inputActionNext: _focusPass,
-                inputListFormatter: [ FilteringTextInputFormatter.deny(RegExp('[#%*]')) ],
+                inputListFormatter: [ FilteringTextInputFormatter.deny(RegExp('[#%*]')) ],  // pode adicionar outras regras, inclusive com "allow".
             ),
             SizedBox(height: 20),
 
