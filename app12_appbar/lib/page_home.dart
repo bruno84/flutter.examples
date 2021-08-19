@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'main.dart';
+import 'utils/prefs.dart';
+
 class PageHome extends StatefulWidget
 {
   @override
@@ -9,23 +12,23 @@ class PageHome extends StatefulWidget
 // setState: método que deve ser chamado para redesenhar a tela.
 class _PageHome extends State<PageHome>
 {
-  bool _flagList = true;
+  String texto = "Nenhuma opção!";
 
   @override
   Widget build(BuildContext context)
   {
     return Scaffold(
       appBar: AppBar(
-        title: Text("App12 - Appbar"),
+        title: Text("APP 12 - Appbar"),
         actions:
         [
           IconButton(
             icon: Icon(Icons.dark_mode),
             onPressed: () {
               print("dark");
-              setState( () {
-                _flagList = true;
-              });
+              Prefs.setBool("flagDark", true);
+              // refresh
+              setState(() {});
             },
           ),
 
@@ -34,7 +37,9 @@ class _PageHome extends State<PageHome>
             onPressed: () {
               print("light");
               setState(() {
-                _flagList = false;
+                Prefs.setBool("flagDark", false);
+                // refresh
+                setState(() {});
               });
             },
           ),
@@ -58,16 +63,18 @@ class _PageHome extends State<PageHome>
   _body(BuildContext context)
   {
     return Center(
-        child: Text("Nada de mais")
+        child: Text(texto)
     );
   }
 
   void _onClickPopuoMenu(String value) {
     switch(value) {
-      case "Opcao1": print("Cliquei na opção1"); break;
-      case "Opcao2": print("Cliquei na opção2"); break;
-      case "Opcao3": print("Cliquei na opção3"); break;
+      case "Opcao1": texto = "Cliquei na opção1"; break;
+      case "Opcao2": texto = "Cliquei na opção2"; break;
+      case "Opcao3": texto = "Cliquei na opção3"; break;
     }
+    // refresh
+    setState(() {});
   }
 
 }

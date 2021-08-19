@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'pages/page_login.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Main());
 }
 
-class MyApp extends StatelessWidget
+class Main extends StatelessWidget
 {
   // brightness: light ou dark
   @override
