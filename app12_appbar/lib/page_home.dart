@@ -5,6 +5,11 @@ import 'utils/prefs.dart';
 
 class PageHome extends StatefulWidget
 {
+  // atributo referente ao método que faz refresh em main
+  late Function changeTheme;
+
+  PageHome(this.changeTheme);
+
   @override
   _PageHome createState() => _PageHome();
 }
@@ -13,6 +18,7 @@ class _PageHome extends State<PageHome>
 {
   String texto = "Nenhuma opção!";
 
+  // OBS: widget se refere à classe PageHome, de modo a acessar seus atributos.
   @override
   Widget build(BuildContext context)
   {
@@ -26,8 +32,8 @@ class _PageHome extends State<PageHome>
             onPressed: () {
               print("dark");
               Prefs.setBool("flagDark", true);
-              // refresh
-              setState(() {});
+              // refresh: executo o método de callback
+              widget.changeTheme(Brightness.dark);
             },
           ),
 
@@ -37,8 +43,8 @@ class _PageHome extends State<PageHome>
               print("light");
               setState(() {
                 Prefs.setBool("flagDark", false);
-                // refresh
-                setState(() {});
+                // refresh: executo o método de callback
+                widget.changeTheme(Brightness.light);
               });
             },
           ),
