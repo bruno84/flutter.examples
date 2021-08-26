@@ -18,11 +18,11 @@ class ConteudoApi
 
     // obtem body do request
     String json = response.body;
-    print("json: $json");
+    //print("json: $json");
 
     // obtem list do json
     List listJson = jsonDecode(json);
-    print("listJson: $listJson");
+    //print("listJson: $listJson");
 
     List<Conteudo> listConteudo = [];
 

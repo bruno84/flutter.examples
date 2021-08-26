@@ -21,12 +21,11 @@ class _PageHome extends State<PageHome>
     _loadList();
   }
 
-  _loadList() async
+  Future<List<Conteudo>> _loadList() async
   {
-    print("_loadList");
-    List<Conteudo> list = await ConteudoApi.getListConteudo();
+    listConteudo = await ConteudoApi.getListConteudo();
 
-    listConteudo = list;
+    return listConteudo;
   }
 
   @override
@@ -41,15 +40,30 @@ class _PageHome extends State<PageHome>
     );
   }
 
-  // ATENCAO: não colocar regras de negócio em build, pois ele é chamado várias vezes!
   _body(BuildContext context)
   {
-    print("_body");
-    String text = listConteudo.toString();
+    return Container(
+        child: FutureBuilder(
+            future: _loadList(),
+            initialData: "Carregando...",
+            builder: (context, snapshot)
+            {
+              if (snapshot.hasData)
+              {
+                String text = snapshot.data.toString();
 
-    print("text: $text");
-    return SingleChildScrollView(
-      child: Text(text),
+                return Center(
+                  child: Text(text),
+                );
+              }
+              else
+              {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }
+        )
     );
   }
 
