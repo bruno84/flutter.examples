@@ -50,7 +50,11 @@ class PageHome extends StatelessWidget
 
     String retorno = "";
     try {
+      // Empilha wPage sobre PageHome:
       retorno = await push(context, wPage);
+
+      // Empilha wPage, e desempilha PageHome:
+      //retorno = await push(context, wPage, flagBack: false);
     }
     catch(error) {
       retorno = "setinha da appbar";
@@ -62,13 +66,28 @@ class PageHome extends StatelessWidget
   //----------------------------------------------------------------------------
   // UTILS
   //----------------------------------------------------------------------------
-  // Função utilitária.
   // push = empilha tela
   // pop = desempilha tela
-  Future push(BuildContext context, Widget page) {
-    return Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return page;
-    }));
+
+  // OBS: adicionei um parametro para definir se pode voltar para página anterior.
+  Future push(BuildContext context, Widget page, {bool flagBack=true})
+  {
+    if (flagBack)
+    {
+      // Pode voltar, ou seja, a página é adicionada na pilha.
+      return Navigator.push(
+          context,
+          MaterialPageRoute(builder: (BuildContext context) { return page; })
+      );
+    }
+    else
+    {
+      // Não pode voltar, ou seja, a página nova substitui a página atual.
+      return Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (BuildContext context) { return page; })
+      );
+    }
   }
 
 }
