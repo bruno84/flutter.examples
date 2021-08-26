@@ -24,6 +24,13 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Internacionalizacao: Adicionar essas duas linhas
+  flutter_localizations:
+    sdk: flutter
+
+
+
+  # Internacionalizacao: adiciona este pacote tambem
   # https://pub.dev/packages/intl:
   intl: ^0.17.0
 
@@ -40,6 +47,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+
+  # Internacionalizacao
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

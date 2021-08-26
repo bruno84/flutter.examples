@@ -1,6 +1,9 @@
 import 'package:app_10_02_intl/page_home.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+// IMPORTANTE: só descomente esta linha quando der run uma primeira vez sem isso:
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(Main());
@@ -8,14 +11,32 @@ void main() {
 
 class Main extends StatelessWidget
 {
-  // brightness: light ou dark
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          brightness: Brightness.light
+          primaryColor: Colors.blue
       ),
+
+      // Informa que o comportamento dos widgets pode ser alterado conforme o idioma
+      localizationsDelegates:
+      [
+        // IMPORTANTE: só descomente esta linha quando der run uma primeira vez sem isso:
+        AppLocalizations.delegate,
+
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+
+      // Informa quais idiomas a aplicação suporta
+      supportedLocales: [
+        Locale('pt', ''), // Português
+        Locale('en', ''), // English
+      ],
+
       home: PageHome(),
     );
   }
