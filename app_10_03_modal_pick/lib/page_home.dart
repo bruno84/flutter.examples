@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-class PageHome extends StatelessWidget
+class PageHome extends StatefulWidget
 {
+  @override
+  _PageHomeState createState() => _PageHomeState();
+}
+
+class _PageHomeState extends State<PageHome>
+{
+  DateTime _selectedDate = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    initializeDateFormatting();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,20 +31,24 @@ class PageHome extends StatelessWidget
 
   _body()
   {
-    // https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
+    // Obtem time_stamp atual:
     final DateTime dtNow = DateTime.now();
-    final DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
 
-    //initializeDateFormatting('pt_BR');
+    // Formatos possíveis:
+    // https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html
+    final String str1 = DateFormat.yMMMMd().format(dtNow);
+    final String str2 = DateFormat.yMd().format(dtNow);
+    final String str3 = DateFormat.jms().format(dtNow);
+    final String str4 = DateFormat("d MMM y").format(dtNow);
 
-    final String str1 = formatter.format(dtNow);
-    final String str2 = DateFormat.yMMMMd().format(dtNow);
-    final String str3 = DateFormat.yMd().format(dtNow);
-    final String str4 = DateFormat.jms().format(dtNow);
-    final String str5 = DateFormat('d MMM y').format(dtNow);
+    // Obtem o idioma do sistema
+    String languageCode = Localizations.localeOf(context).languageCode;
+    print("languageCode = $languageCode");
 
+    // formatter personalizado e conforme idioma
+    final DateFormat formatter = DateFormat("d MMMM y", "pt_BR");
 
-
+    final String strPt1 = formatter.format(dtNow);
 
     return ListView(
         children: [
@@ -37,11 +56,42 @@ class PageHome extends StatelessWidget
           Text("str2: $str2"),
           Text("str3: $str3"),
           Text("str4: $str4"),
-          Text("str5: $str5"),
+
+          Text("strPers1: $strPt1"),
+
+          ElevatedButton(
+            child: Text("Selecione data"),
+            onPressed: _showDatePicker,
+          ),
+
+          Text(
+            _selectedDate == null
+                ? 'Data vazia!'
+                : 'Data: ${formatter.format(_selectedDate)}',
+          ),
         ]
 
     );
   }
 
+  //----------------------------------------------------------------------------
+  // EVENTO
+  //----------------------------------------------------------------------------
 
+  _showDatePicker()
+  {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:app_10_03_modal_pick/page_home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,13 +7,12 @@ void main() {
 
 class Main extends StatelessWidget
 {
-  // brightness: light ou dark
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          brightness: Brightness.light
+          primaryColor: Colors.blue
       ),
       home: PageHome(),
     );
