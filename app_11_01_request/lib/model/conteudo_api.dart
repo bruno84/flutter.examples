@@ -7,7 +7,7 @@ class ConteudoApi
   static Future<List<Conteudo>> getListConteudo() async
   {
     // OBS: força um delay. ùtil para testes.
-    // Future.delayed(Duration(seconds: 3));
+    Future.delayed(Duration(seconds: 3));
 
     var url = Uri.https("jsonplaceholder.typicode.com", "/todos/");
 
@@ -15,6 +15,11 @@ class ConteudoApi
 
     // requisicao
     var response = await http.get(url);
+
+    // trata problema na requisição
+    if(response.statusCode != 200) {
+      return [];
+    }
 
     // obtem body do request
     String json = response.body;
