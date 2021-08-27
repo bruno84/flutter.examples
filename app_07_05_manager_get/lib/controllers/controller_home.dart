@@ -2,12 +2,12 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class ControllerHome extends GetxController
 {
-  int _counter = 0;
+  int _valor = 0;
 
-  int get counter => this._counter;
+  int get valor => this._valor;
 
-  void incrementCounter() {
-    _counter++;
+  void inc() {
+    _valor++;
     update(); //Atualiza a tela
   }
 }

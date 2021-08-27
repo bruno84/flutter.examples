@@ -1,6 +1,9 @@
+import 'package:app_07_05_manager_get/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'routes/app_pages.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/instance_manager.dart';
+import 'controllers/controller_main.dart';
 
 void main() {
   runApp(Main());
@@ -10,16 +13,27 @@ void main() {
 // initialRoute: informa quem é a pagina inicial ("/")
 // getPages: informa onde as páginas estão sendo definidas
 
-class Main extends StatelessWidget {
+// GetBuilder: deve envolver os componentes que sofrem update.
+
+class Main extends StatelessWidget
+{
   @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.blue,
-      ),
-      initialRoute: Routes.pgHome,
-      getPages: AppPages().pages,
+  Widget build(BuildContext context)
+  {
+    final controllerMain = Get.put( ControllerMain() );
+
+    return GetBuilder<ControllerMain>(
+      builder: (context) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primaryColor: Colors.blue,
+            brightness: controllerMain.brightness,
+          ),
+          initialRoute: AppRoutes.pgHome,
+          getPages: AppPages().pages,
+        );
+      },
     );
   }
 }

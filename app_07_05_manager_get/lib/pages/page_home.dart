@@ -1,11 +1,15 @@
 
 import 'package:app_07_05_manager_get/controllers/controller_home.dart';
+import 'package:app_07_05_manager_get/controllers/controller_main.dart';
+import 'package:app_07_05_manager_get/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/instance_manager.dart';
+import 'package:get/get.dart';
 
 class PageHome extends StatelessWidget
 {
+  final ControllerMain controllerMain = Get.find<ControllerMain>();
   final ControllerHome controllerHome = Get.find<ControllerHome>();
 
   @override
@@ -17,12 +21,6 @@ class PageHome extends StatelessWidget
       ),
 
       body: _body(),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: controllerHome.incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
   }
 
@@ -31,11 +29,31 @@ class PageHome extends StatelessWidget
     return ListView(
       children:
       [
-        Text("Contador de cliques no botão:"),
+        Text("Contador:"),
+        SizedBox(height: 20),
 
-        GetBuilder(builder: (context) {
-          return Text("${controllerHome.counter}");
+        GetBuilder<ControllerHome>(builder: (context) {
+          return Text("${controllerHome.valor}");
         }),
+        SizedBox(height: 20),
+
+        ElevatedButton(
+            child: Text('+'),
+            onPressed: () => controllerHome.inc()
+        ),
+        SizedBox(height: 20),
+
+        ElevatedButton(
+            child: Text('mudar tema'),
+            onPressed: () => controllerMain.changeBrightness()
+        ),
+        SizedBox(height: 20),
+
+        ElevatedButton(
+            child: Text('ir para pagina1'),
+            onPressed: () => Get.toNamed(AppRoutes.pg1),
+        ),
+
       ],
     );
   }
