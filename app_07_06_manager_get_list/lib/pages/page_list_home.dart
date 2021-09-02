@@ -8,13 +8,7 @@ import 'package:app_07_06_manager_get_list/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PageListHome extends StatefulWidget
-{
-  @override
-  _PageListHome createState() => _PageListHome();
-}
-
-class _PageListHome extends State<PageListHome>
+class PageListHome extends StatelessWidget
 {
   final ControllerListHome controllerListHome = Get.find<ControllerListHome>();
   final ControllerListFav controllerListFav = Get.find<ControllerListFav>();
@@ -51,14 +45,14 @@ class _PageListHome extends State<PageListHome>
           itemExtent: 300,
           itemCount: listContHome.length,
           itemBuilder: (context, index) {
-            return _itemView(listContHome, index);
+            return _itemView(listContHome, index, context);
           }
       );
     });
   }
 
   // itemView() pega um objeto da lista para montar o card.
-  _itemView(List<dynamic> listConteudo, int index)
+  _itemView(List<dynamic> listConteudo, int index, context)
   {
     Conteudo conteudo = listConteudo[index];
 

@@ -6,13 +6,7 @@ import 'package:app_07_06_manager_get_list/model/conteudo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PageListFav extends StatefulWidget
-{
-  @override
-  _PageListFav createState() => _PageListFav();
-}
-
-class _PageListFav extends State<PageListFav>
+class PageListFav extends StatelessWidget
 {
   final ControllerListHome controllerListHome = Get.find<ControllerListHome>();
   final ControllerListFav controllerListFav = Get.find<ControllerListFav>();
@@ -39,14 +33,14 @@ class _PageListFav extends State<PageListFav>
           itemExtent: 300,
           itemCount: listContFav.length,
           itemBuilder: (context, index) {
-            return _itemView(listContFav, index);
+            return _itemView(listContFav, index, context);
           }
       );
     });
   }
 
   // itemView() pega um objeto da lista para montar o card.
-  _itemView(List<dynamic> listConteudo, int index)
+  _itemView(List<dynamic> listConteudo, int index, context)
   {
     Conteudo conteudo = listConteudo[index];
 
