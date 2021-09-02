@@ -22,6 +22,8 @@ class PageHome extends StatelessWidget
         children: [
           // IMPORTANTE: só descomente esta linha quando der run uma primeira vez sem isso:
           Text(AppLocalizations.of(context)!.helloWorld),
+
+          Text("lalala"),
         ]
 
     );

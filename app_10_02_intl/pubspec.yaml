@@ -28,8 +28,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-
-
   # Internacionalizacao: adiciona este pacote tambem
   # https://pub.dev/packages/intl:
   intl: ^0.17.0

@@ -10,7 +10,7 @@ class PageHome extends StatefulWidget
 
 class _PageHomeState extends State<PageHome>
 {
-  DateTime _selectedDate = DateTime.now();
+  DateTime? _selectedDate = null;
 
   @override
   void initState() {
@@ -32,6 +32,7 @@ class _PageHomeState extends State<PageHome>
   _body()
   {
     // Obtem time_stamp atual:
+    // Calendar.getInstance() (do Java)
     final DateTime dtNow = DateTime.now();
 
     // Formatos possíveis:
@@ -46,9 +47,9 @@ class _PageHomeState extends State<PageHome>
     print("languageCode = $languageCode");
 
     // formatter personalizado e conforme idioma
-    final DateFormat formatter = DateFormat("d MMMM y", "pt_BR");
+    final DateFormat formatPt = DateFormat("d MMMM y", "pt_BR");
 
-    final String strPt1 = formatter.format(dtNow);
+    final String strPt1 = formatPt.format(dtNow);
 
     return ListView(
         children: [
@@ -67,7 +68,7 @@ class _PageHomeState extends State<PageHome>
           Text(
             _selectedDate == null
                 ? 'Data vazia!'
-                : 'Data: ${formatter.format(_selectedDate)}',
+                : 'Data: ${formatPt.format(_selectedDate!)}',
           ),
         ]
 
@@ -83,14 +84,14 @@ class _PageHomeState extends State<PageHome>
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2021),
+      firstDate: DateTime(2015),
       lastDate: DateTime.now(),
-    ).then((pickedDate) {
-      if (pickedDate == null) {
+    ).then((dateSelected) {
+      if (dateSelected == null) {
         return;
       }
       setState(() {
-        _selectedDate = pickedDate;
+        _selectedDate = dateSelected;
       });
     });
   }

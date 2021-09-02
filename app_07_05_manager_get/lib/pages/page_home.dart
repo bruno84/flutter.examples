@@ -1,4 +1,3 @@
-
 import 'package:app_07_05_manager_get/controllers/controller_home.dart';
 import 'package:app_07_05_manager_get/controllers/controller_main.dart';
 import 'package:app_07_05_manager_get/routes/app_pages.dart';
@@ -9,8 +8,8 @@ import 'package:get/get.dart';
 
 class PageHome extends StatelessWidget
 {
-  final ControllerMain controllerMain = Get.find<ControllerMain>();
   final ControllerHome controllerHome = Get.find<ControllerHome>();
+  final ControllerMain controllerMain = Get.find<ControllerMain>();
 
   @override
   Widget build(BuildContext context)
@@ -24,6 +23,7 @@ class PageHome extends StatelessWidget
     );
   }
 
+  // IMPORTANTE: não esqueça do generic do GetBuilder! Ex: <ControllerHome>
   _body()
   {
     return ListView(
@@ -32,6 +32,7 @@ class PageHome extends StatelessWidget
         Text("Contador:"),
         SizedBox(height: 20),
 
+        // _ = quando não for preciso usar o contexto
         GetBuilder<ControllerHome>(builder: (context) {
           return Text("${controllerHome.valor}");
         }),

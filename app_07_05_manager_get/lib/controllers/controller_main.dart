@@ -3,14 +3,16 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class ControllerMain extends GetxController
 {
-  Brightness brightness = Brightness.dark;
+  Brightness _brightness = Brightness.dark;
+
+  Brightness get brightness => this._brightness;
 
   void changeBrightness()
   {
-    if (brightness == Brightness.dark) {
-      brightness = Brightness.light;
+    if (_brightness == Brightness.dark) {
+      _brightness = Brightness.light;
     } else {
-      brightness = Brightness.dark;
+      _brightness = Brightness.dark;
     }
     update();
   }

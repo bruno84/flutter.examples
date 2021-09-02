@@ -10,4 +10,6 @@ class ControllerHome extends GetxController
     _valor++;
     update(); //Atualiza a tela
   }
+
+
 }

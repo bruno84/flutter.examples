@@ -4,8 +4,6 @@ import 'package:get/instance_manager.dart';
 
 class PagePg1 extends StatelessWidget
 {
-  final ControllerMain controller1 = Get.find<ControllerMain>();
-
   @override
   Widget build(BuildContext context)
   {

@@ -22,7 +22,7 @@ class AppPages
 
     GetPage(
       name: AppRoutes.pg1,
-      page: () => PagePg1()
+      page: () => PagePg1(),
     ),
 
   ];
