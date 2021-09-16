@@ -36,7 +36,7 @@ class ControllerListHome extends GetxController
   }
 
   @override
-  void onClose() { // chamado quando o widget é removido da memória
+  void onClose() { // chamado quando o controlador é removido da memória
     print("ControllerListHome: onClose()");
     super.onClose();
   }

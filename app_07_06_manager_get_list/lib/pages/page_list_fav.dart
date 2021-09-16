@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 class PageListFav extends StatelessWidget
 {
+  // OBS: padrão de projeto Singleton
   final ControllerListHome controllerListHome = Get.find<ControllerListHome>();
   final ControllerListFav controllerListFav = Get.find<ControllerListFav>();
 
