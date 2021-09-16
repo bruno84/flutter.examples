@@ -9,13 +9,22 @@ class ControllerHome extends GetxController
   List<Conteudo> get listContHome => _listContent;
 
   @override
-  void onInit() async
-  { // chamado quando o widget é alocado na memória
+  void onInit()  async    // chamado quando o widget é alocado na memória
+  {
     print("ControllerHome: onInit()");
     super.onInit();
 
-    _listContent = await ConnectionApi.getListConteudo(); // retorna Future<List<Conteudo>>
+    _listContent = await ConnectionApi.getListConteudo();
     update();
+
+    /*
+    // OBS: assim, o fluxo nao fica esperando os dados serem carregados.
+    ConnectionApi.getListConteudo().then((value) {
+      _listContent = value;
+      update();
+    });
+    */
+
   }
 
   @override
