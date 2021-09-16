@@ -1,7 +1,11 @@
 import 'package:app_12_01_firebase/comp/comp_elevatedbutton.dart';
 import 'package:app_12_01_firebase/comp/comp_textformfield.dart';
+import 'package:app_12_01_firebase/firebase/firebase_service.dart';
+import 'package:app_12_01_firebase/firebase/response.dart';
 import 'package:app_12_01_firebase/pages/page_home.dart';
+import 'package:app_12_01_firebase/utils/utils.dart';
 import 'package:auth_buttons/auth_buttons.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,7 +43,7 @@ class _PageLogin extends State<PageLogin>
   {
     return Scaffold(
       appBar: AppBar(
-        title: Text("APP 10-01 - formulário e preferences"),
+        title: Text("APP 12-01 - formulário e preferences"),
       ),
       body: _body(),
     );
@@ -111,11 +115,21 @@ class _PageLogin extends State<PageLogin>
     String pass = _contPass.text;
     print("Email: $email, Pass: $pass");
 
-    await push( context, PageHome(email), flagBack: false);
+    await push( context, PageHome(), flagBack: false);
   }
 
-  _onClickGoogle() {
-    print("Google");
+  _onClickGoogle() async
+  {
+    print("_onClickGoogle");
+
+    final service = FirebaseService();
+    Response response = await service.loginGoogle();
+
+    if (response.ok) {
+      push(context, PageHome(), flagBack: true);
+    } else {
+      print("Erro: " + response.msg);
+    }
   }
 
   //----------------------------------------------------------------------------
@@ -139,30 +153,5 @@ class _PageLogin extends State<PageLogin>
     }
     return null;
   }
-
-  //----------------------------------------------------------------------------
-  // UTILITÁRIOS
-  //----------------------------------------------------------------------------
-  // Empilhar uma nova página
-  // OBS: adicionei um parametro para definir se pode voltar para página anterior.
-  Future push(BuildContext context, Widget page, {bool flagBack=true})
-  {
-    if(flagBack)
-    {
-      // Pode voltar, ou seja, a página é adicionada na pilha.
-      return Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-        return page;
-      }));
-    }
-    else
-    {
-      // Não pode voltar, ou seja, a página nova substitui a página atual.
-      return Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) {
-        return page;
-      }));
-    }
-
-  }
-
 
 }
