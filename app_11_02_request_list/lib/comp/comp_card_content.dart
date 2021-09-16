@@ -19,6 +19,12 @@ class CompCardContent extends StatelessWidget
           //_imgAsset(conteudo.foto),
 
           Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black)
+            ),
+          ),
+
+          Container(
               alignment: Alignment.bottomRight,
               child: Container(
                 margin: EdgeInsets.all(20),

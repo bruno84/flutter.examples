@@ -1,11 +1,9 @@
-import 'dart:async';
 import 'package:app_11_02_request_list/comp/alerts.dart';
 import 'package:app_11_02_request_list/comp/comp_card_content.dart';
 import 'package:app_11_02_request_list/controllers/controller_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../model/conteudo.dart';
-import '../connection/connection_api.dart';
 
 class PageHome extends StatelessWidget
 {
@@ -26,10 +24,10 @@ class PageHome extends StatelessWidget
 
   _body(BuildContext context)
   {
-    List<Conteudo> listContHome = controllerListHome.listContHome;
-
     return GetBuilder<ControllerHome>(builder: (context)
     {
+      List<Conteudo> listContHome = controllerListHome.listContHome;
+
       return ListView.builder(
           itemExtent: 300,
           itemCount: listContHome.length,
