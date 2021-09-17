@@ -13,14 +13,32 @@ void main() async
 }
 
 /*
-FIREBASE:
-1) Como conseguir o SHA1:
+
+CONFIGURAR FIREBASE:
+1) applicationId (pacote da app):
+No arquivo: android/app/build.gradle
+Ex: org.brunomonteiro.app_12_01_firebase
+
+2) Como conseguir o SHA1:
+Comando no terminal:
 keytool -list -v -keystore C:\Users\{User}\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
+Exemplo:
+keytool -list -v -keystore C:\Users\bruno.monteiro\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
 
-2) Firebase: E-mail para Suporte
+3) Copiar arquivo google-services.json
+Local: android/app/
 
-3) Projeto Firebase é criado também no Google Cloud Console
+4) Firebase: E-mail para Suporte
+FireBase Console -> Project Settings
+Preencha Support email.
+
+5) Habilitar Google SignIn:
+FireBase Console -> Authentication -> aba: SignIn Method -> Habilitar: Google
+
+6) Projeto Firebase é criado também no Google Cloud Console
 https://console.cloud.google.com/
+Cloud Console -> OAuth Consent Screen
+copiar e colar URL padrão nos campos: "homepage" e "Privacy Policy"
 
 */
 

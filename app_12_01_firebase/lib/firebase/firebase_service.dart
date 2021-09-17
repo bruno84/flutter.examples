@@ -7,7 +7,7 @@ String firebaseUserUid = "";
 class FirebaseService
 {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _fbAuth = FirebaseAuth.instance;
 
   Future<dynamic> loginGoogle() async
   {
@@ -26,7 +26,7 @@ class FirebaseService
       );
 
       // Login no Firebase
-      UserCredential result = await _auth.signInWithCredential(credential);
+      UserCredential result = await _fbAuth.signInWithCredential(credential);
       final User? fUser = result.user;
       print("Firebase Nome: ${fUser!.displayName}");
       print("Firebase Email: ${fUser.email}");
@@ -37,8 +37,32 @@ class FirebaseService
     }
     catch (error) {
       print("Firebase error $error");
-      return Response.error(msg: "Não foi possível fazer o login");
+      return Response.error(msg: "Erro no login");
     }
+  }
+
+
+  Future<dynamic> logout() async
+  {
+    try {
+      await _fbAuth.signOut();
+      await _googleSignIn.signOut();
+
+      return Response.ok();
+    }
+    catch (error) {
+      print("Firebase error $error");
+      return Response.error(msg: "Erro no logout");
+    }
+  }
+
+  Future<User> getUser() async
+  {
+    final User? fbUser = await _fbAuth.currentUser;
+    String uid = fbUser!.uid;
+    print("uid = " + uid);
+
+    return fbUser;
   }
 
 

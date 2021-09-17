@@ -43,7 +43,7 @@ class _PageLogin extends State<PageLogin>
   {
     return Scaffold(
       appBar: AppBar(
-        title: Text("APP 12-01 - formulário e preferences"),
+        title: Text("APP 12-01 - firebase login"),
       ),
       body: _body(),
     );
@@ -62,31 +62,12 @@ class _PageLogin extends State<PageLogin>
         padding: EdgeInsets.all(20),  // material design: 16
         child: ListView(
           children: [
-            CompTextFormField("Email", "Digite seu email", _contEmail,
-                inputType: TextInputType.emailAddress,
-                inputValidator: _validateEmail,
-                inputActionNext: _focusPass,
-                inputListFormatter: [ FilteringTextInputFormatter.deny(RegExp('[#%*]')) ],  // pode adicionar outras regras, inclusive com "allow".
-            ),
-            SizedBox(height: 20),
 
-            CompTextFormField("Senha", "Digite sua senha", _contPass,
-                inputType: TextInputType.number,
-                inputObscure: true,
-                inputValidator: _validatePass,
-                inputFocusNode: _focusPass,
-                inputAction: TextInputAction.send,
-                inputActionSubmit: _onClickLogin,
-                inputMaxLength: 20,
-            ),
-            SizedBox(height: 20),
-
-            CompElevatedButton("Login", _onClickLogin, height: 50, fontSize: 22, colorBG: Colors.blue),
             SizedBox(height: 20),
 
             Container(
               child: GoogleAuthButton(
-                onPressed: _onClickGoogle,
+                onPressed: _onClickGoogleLogin,
               ),
             )
 
@@ -99,31 +80,13 @@ class _PageLogin extends State<PageLogin>
   //----------------------------------------------------------------------------
   // EVENTO
   //----------------------------------------------------------------------------
-  // OBS: validate() chama os métodos que especifiquei em "validator" em cada TextFormField.
-  Future<void> _onClickLogin() async
+
+  _onClickGoogleLogin() async
   {
-    print("_onClickLogin");
+    print("_onClickGoogleLogin");
 
-    // true: sem erros
-    bool flag = _formKey.currentState!.validate();
-    if( !flag ) {
-      print("Problema de validação");
-      return;
-    }
-
-    String email = _contEmail.text;
-    String pass = _contPass.text;
-    print("Email: $email, Pass: $pass");
-
-    await push( context, PageHome(), flagBack: false);
-  }
-
-  _onClickGoogle() async
-  {
-    print("_onClickGoogle");
-
-    final service = FirebaseService();
-    Response response = await service.loginGoogle();
+    final fbService = FirebaseService();
+    Response response = await fbService.loginGoogle();
 
     if (response.ok) {
       push(context, PageHome(), flagBack: true);
@@ -132,26 +95,5 @@ class _PageLogin extends State<PageLogin>
     }
   }
 
-  //----------------------------------------------------------------------------
-  // VALIDATE
-  //----------------------------------------------------------------------------
-  // OBS: argumento deve ser dynamic !!!
-  String? _validateEmail(dynamic text) {
-    if (text.isEmpty) {
-      return "Campo vazio!";
-    }
-    return null;
-  }
-
-  // OBS: argumento deve ser dynamic !!!
-  String? _validatePass(dynamic text) {
-    if (text.isEmpty) {
-      return "Campo vazio!";
-    }
-    if (text.length < 4) {
-      return "No mínimo: 4 números";
-    }
-    return null;
-  }
 
 }
