@@ -15,6 +15,11 @@ void main() async
 /*
 
 CONFIGURAR FIREBASE:
+0) Firebase Console:
+https://console.firebase.google.com/
+Adicionar projeto.
+"Adicione um app para começar"
+
 1) applicationId (pacote da app):
 No arquivo: android/app/build.gradle
 Ex: org.brunomonteiro.app_12_01_firebase
@@ -37,7 +42,7 @@ FireBase Console -> Authentication -> aba: SignIn Method -> Habilitar: Google
 
 6) Projeto Firebase é criado também no Google Cloud Console
 https://console.cloud.google.com/
-Cloud Console -> OAuth Consent Screen
+Cloud Console -> APIs e Serviços -> OAuth Consent Screen -> Editar Aplicativo
 copiar e colar URL padrão nos campos: "homepage" e "Privacy Policy"
 
 */

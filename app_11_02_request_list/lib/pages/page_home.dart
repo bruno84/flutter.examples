@@ -48,7 +48,7 @@ class PageHome extends StatelessWidget
     return GestureDetector(
         onTap: () {
           print(conteudo.title);
-          Alerts.showSnackBar(context, "Movido para Favoritos: ${conteudo.title}");
+          Alerts.showSnackBar(context, "Title: ${conteudo.title}");
         },
         child: CompCardContent(conteudo)
     );

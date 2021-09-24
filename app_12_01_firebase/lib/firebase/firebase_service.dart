@@ -25,6 +25,9 @@ class FirebaseService
         idToken: googleAuth.idToken,
       );
 
+      print("accessToken: ${googleAuth.accessToken}");
+      print("idToken: ${googleAuth.idToken}");
+
       // Login no Firebase
       UserCredential result = await _fbAuth.signInWithCredential(credential);
       final User? fUser = result.user;

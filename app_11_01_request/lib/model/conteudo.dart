@@ -1,5 +1,6 @@
 
 // OBS: classe criada com: https://javiercbk.github.io/json_to_dart/
+// Alternativa: https://app.quicktype.io/
 // OBS: classe baseada na API de teste: https://jsonplaceholder.typicode.com/todos/
 // Só adicionei as mudanças do null safety.
 

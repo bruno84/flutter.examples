@@ -8,6 +8,8 @@ class ConnectionApi
 
   static Future<List<Conteudo>> getListConteudo() async
   {
+    List<Conteudo> listObj = [];
+
     var url = Uri.https(_host, "/todos/");
     var response = await http.get(url);
 
@@ -16,9 +18,7 @@ class ConnectionApi
     }
 
     String json = response.body;
-    print(json);
     List listJson = jsonDecode(json);
-    List<Conteudo> listObj = [];
 
     for(Map<String, dynamic> map in listJson) {
       Conteudo obj = Conteudo.fromJson(map);

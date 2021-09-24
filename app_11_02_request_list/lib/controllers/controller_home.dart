@@ -4,12 +4,14 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class ControllerHome extends GetxController
 {
+  // Atributos:
   List<Conteudo> _listContent = [];
 
+  // Getters:
   List<Conteudo> get listContHome => _listContent;
 
   @override
-  void onInit()  async    // chamado quando o widget é alocado na memória
+  void onInit() async    // chamado quando o widget é alocado na memória
   {
     print("ControllerHome: onInit()");
     super.onInit();
@@ -17,14 +19,13 @@ class ControllerHome extends GetxController
     _listContent = await ConnectionApi.getListConteudo();
     update();
 
-    /*
     // OBS: assim, o fluxo nao fica esperando os dados serem carregados.
+    /*
     ConnectionApi.getListConteudo().then((value) {
       _listContent = value;
       update();
     });
     */
-
   }
 
   @override

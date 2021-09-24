@@ -45,7 +45,7 @@ class _PageHome extends State<PageHome>
     return Container(
         child: FutureBuilder(
             future: _loadList(),
-            initialData: "Carregando...",
+            //initialData: "Carregando...",
             builder: (context, snapshot)
             {
               if (snapshot.hasData)
