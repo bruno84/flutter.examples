@@ -1,4 +1,4 @@
-name: app_14_01_mapa
+name: app_14_02_geocoding
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -37,6 +37,10 @@ dependencies:
   # Geolocator
   # https://pub.dev/packages/geolocator/
   geolocator: ^7.6.2
+
+  # Geocoding
+  # https://pub.dev/packages/geocoding/
+  geocoding: ^2.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
