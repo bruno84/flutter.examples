@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
-
 import 'comp/comp_elevatedbutton.dart';
 
 
@@ -27,11 +23,6 @@ class _PageHomeState extends State<PageHome>
 
     _controller = VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4");
     _controller.setLooping(true);
-    _controller.initialize().then((_) {
-        setState(() {
-          _controller.play();
-        });
-      });
   }
 
   @override
@@ -71,48 +62,35 @@ class _PageHomeState extends State<PageHome>
 
   _video()
   {
-    if (videoUri == null)
-    {
-      print("Video default");
-      if (_controller.value.isInitialized)
-      {
-        return AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
-        );
-      }
-      else {
-        return Container();
-      }
-    }
-    else
-    {
-      print("Video carregado");
-      print("videoUri = " + videoUri.toString());
+     // Verifico de devo dar refresh e play
+     if (_controller.value.isInitialized)
+     {
+       print("Bruno: Iniciado!");
 
-      _controller.initialize().then((_) {
-        setState(() {
-          print("PLAY!");
-          _controller.play();
-        });
-      });
+       // Exibe player
+       return AspectRatio(
+         aspectRatio: _controller.value.aspectRatio,
+         child: VideoPlayer(_controller),
+       );
+     }
+     else
+     {
+       print("Bruno: Nao Iniciado!");
 
-      if (_controller.value.isInitialized)
-      {
-        print("Video inicializado");
-        return AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
-        );
-      }
-      else {
-        print("Video NAO inicializado");
-        return Container(
-          color: Colors.orange,
-          height: 300,
-        );
-      }
-    }
+       // Entao manda iniciar!
+       _controller.initialize().then((_) {
+         setState(() {
+           print("Bruno: Iniciado finalmente!");
+           _controller.play();
+         });
+       });
+
+       // Exibe tela azul
+       return Container(
+         color: Colors.blue,
+         height: 300,
+       );
+     }
   }
 
   _floatPlayPause()
@@ -135,14 +113,14 @@ class _PageHomeState extends State<PageHome>
   //----------------------------------------------------------------------------
   void _onClickCameraVideo() async
   {
-    XFile? f = await imagePicker.pickVideo(
+    XFile? xf = await imagePicker.pickVideo(
         source: ImageSource.camera,
-        maxDuration: Duration(seconds: 5),
+        maxDuration: Duration(seconds: 3),
         preferredCameraDevice: CameraDevice.front
     );
 
     setState(() {
-      videoUri = Uri.file(f!.path);
+      videoUri = Uri.file(xf!.path);
       _controller = VideoPlayerController.contentUri(videoUri);
     });
   }

@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.brunomonteiro.app_13_02_video">
 
+    <!-- Bruno: adicionar caso um video ou recurso venha da Web -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:label="app_13_02_video"
         android:icon="@mipmap/ic_launcher">

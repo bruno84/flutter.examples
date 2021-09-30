@@ -12,7 +12,7 @@ class PageHome extends StatefulWidget
 class _PageHomeState extends State<PageHome>
 {
   ImagePicker imagePicker = ImagePicker();
-  var image;
+  var imageFile;
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +43,9 @@ class _PageHomeState extends State<PageHome>
   }
 
   _image() {
-    if (image != null) {
+    if (imageFile != null) {
       return Image.file(
-        image,
+        imageFile,
         height: 400,
         fit: BoxFit.fitHeight,
       );
@@ -63,7 +63,7 @@ class _PageHomeState extends State<PageHome>
   //----------------------------------------------------------------------------
   void _onClickCameraImagem() async
   {
-    XFile? f = await imagePicker.pickImage(
+    XFile? xf = await imagePicker.pickImage(
         source: ImageSource.camera,
         maxHeight: 480,
         maxWidth: 640,
@@ -72,16 +72,18 @@ class _PageHomeState extends State<PageHome>
     );
 
     setState(() {
-      this.image = File(f!.path);
+      this.imageFile = File(xf!.path);
     });
   }
 
   void _onClickGaleriaImagem() async
   {
-    XFile? f = await imagePicker.pickImage(source: ImageSource.gallery);
+    XFile? f = await imagePicker.pickImage(
+        source: ImageSource.gallery
+    );
 
     setState(() {
-      this.image = File(f!.path);
+      this.imageFile = File(f!.path);
     });
   }
 

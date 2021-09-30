@@ -9,8 +9,6 @@ class PageHome extends StatefulWidget
 
 class _PageHomeState extends State<PageHome>
 {
-  var image;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +23,7 @@ class _PageHomeState extends State<PageHome>
   Container _body() {
     return Container(
         child: GoogleMap(
-            mapType: MapType.satellite,
+            mapType: MapType.normal,
             zoomGesturesEnabled: true,
             zoomControlsEnabled: true,
             myLocationButtonEnabled: true,
@@ -69,22 +67,7 @@ class _PageHomeState extends State<PageHome>
     );
 
     return { mark1, mark2 };
-
   }
 
-  //----------------------------------------------------------------------------
-  // EVENTOS
-  //----------------------------------------------------------------------------
-  void _onClickMapa() async
-  {
-
-
-
-  }
-
-  void _onClickGaleriaImagem() async
-  {
-
-  }
 
 }
