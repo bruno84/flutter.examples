@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'comp/comp_elevatedbutton.dart';
 
 class PageHome extends StatefulWidget
@@ -168,7 +166,7 @@ class _PageHomeState extends State<PageHome>
   {
     setState(() {
       _target = _gps2();
-      _tilt = 60;
+      _tilt = 90;
       _bearing = 180;
       _zoom = 17;
       _movimentarCamera();

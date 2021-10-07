@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -15,7 +14,6 @@ class _PageHomeState extends State<PageHome>
 {
   // Completer: permite fazer requisicoes para APIs
   Completer<GoogleMapController> _completerGoogle = Completer();
-  MapType _mapType = MapType.normal;
   TextEditingController _contBuscar = TextEditingController();
 
   @override
@@ -37,7 +35,7 @@ class _PageHomeState extends State<PageHome>
       children: [
         Container(
           child: GoogleMap(
-              mapType: _mapType,
+              mapType: MapType.normal,
               onMapCreated: _onMapCreated,
 
               compassEnabled: true,
@@ -142,9 +140,12 @@ class _PageHomeState extends State<PageHome>
         resultado += "\n subLocality: ${placemark.subLocality}";
         resultado += "\n thoroughfare: ${placemark.thoroughfare}";
         resultado += "\n subThoroughfare: ${placemark.subThoroughfare}";
+        resultado += "\n name: ${placemark.name}";
+        resultado += "\n street: ${placemark.street}";
         resultado += "\n postalCode: ${placemark.postalCode}";
         resultado += "\n country: ${placemark.country}";
         resultado += "\n isoCountryCode: ${placemark.isoCountryCode}";
+        resultado += "\n toString: ${placemark.toString()}";
 
         print("resultado placemark: " + resultado + "\n\n");
       }
