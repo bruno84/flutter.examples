@@ -47,7 +47,7 @@ class Pais
   String nome;
 
   Pais({
-    required this.id,
+    this.id=0,
     required this.nome,
   });
 

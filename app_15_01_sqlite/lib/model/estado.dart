@@ -50,7 +50,7 @@ class Estado
   Pais pais;
 
   Estado({
-    required this.id,
+    this.id=0,
     required this.nome,
     required this.sigla,
     required this.pais,

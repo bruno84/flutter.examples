@@ -19,13 +19,15 @@ class _PageHomeState extends State<PageHome>
   late String str;
 
   @override
-  void initState()
-  {
+  void initState() {
     super.initState();
-
-    initListPais();
-    initListEstado();
     str = "vazio";
+  }
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    await initDB();
   }
 
   @override
@@ -66,10 +68,7 @@ class _PageHomeState extends State<PageHome>
   {
     print("_onClickCreateEstado");
 
-    var listPaisFut = paisDb.getAll();
-    var listPais;
-    listPaisFut.then((retorno)  =>  listPais = retorno);
-
+    List<Pais> listPais = await paisDb.getAll();
     Estado estado = Estado(id: 0, nome: 'NOVO', sigla: 'NV', pais: listPais[0]);
     estadoDb.insert(estado);
   }
@@ -78,76 +77,67 @@ class _PageHomeState extends State<PageHome>
   {
     print("_onClickReadEstado");
 
-    var listFut = estadoDb.getAll();
-    var list;
-    listFut.then((retorno)  =>  list = retorno);
+    List<Estado> list = await estadoDb.getAll();
 
-    setState(() {
-      str = list.toString();
-    });
+    for(Estado obj in list) {
+      print(obj.toString());
+      str = str + obj.toString() + "\n";
+    }
+
+    setState(() {});
   }
 
   Future<void> _onClickUpdateEstado() async
   {
     print("_onClickUpdateEstado");
 
-    var listFut = estadoDb.getAll();
-    var list;
-    listFut.then((retorno)  =>  list = retorno);
+    List<Estado> list = await estadoDb.getAll();
     Estado estado = list[0];
     estado.nome = estado.nome + "MODIF";
-    estadoDb.update(estado);
+    await estadoDb.update(estado);
   }
 
   Future<void> _onClickDeleteEstado() async
   {
     print("_onClickDeleteEstado");
 
-    var listFut = estadoDb.getAll();
-    var list;
-    listFut.then((retorno)  =>  list = retorno);
+    List<Estado> list = await estadoDb.getAll();
     Estado estado = list[0];
-    estadoDb.delete(estado);
+    await estadoDb.delete(estado);
   }
 
   //----------------------------------------------------------------------------
   // DADOS INICIAIS
   //----------------------------------------------------------------------------
-  initListPais()
+  initDB() async
   {
-    print("initListPais");
+    print("initDB");
 
-    List<Pais> list = [
-      Pais(id: 0, nome: 'Brasil'),
-      Pais(id: 1, nome: 'Espanha'),
-      Pais(id: 2, nome: 'Argentina'),
+    List<Pais> listPais = [
+      Pais(nome: 'P111'),
+      Pais(nome: 'P222'),
+      Pais(nome: 'P333'),
     ];
 
-    for(Pais obj in list) {
-      paisDb.insert(obj);
+    print("criando Paises");
+    for(Pais obj in listPais) {
+      await paisDb.insert(obj);
       print(obj.toString());
     }
 
-    return list;
-  }
-
-  initListEstado()
-  {
-    print("initListEstado");
-
-    var listPaisFut = paisDb.getAll();
-    var listPais;
-    listPaisFut.then((retorno)  =>  listPais = retorno);
-
-    List<Estado> list = [
-      Estado(id: 0, nome: 'Pernambuco', sigla: 'PE', pais: listPais[0]),
-      Estado(id: 1, nome: 'Ceará',      sigla: 'CE', pais: listPais[0]),
-      Estado(id: 2, nome: 'Barcelona',  sigla: 'PB', pais: listPais[1]),
+    print("criando Estados");
+    List<Estado> listEstado = [
+      Estado(nome: 'Est111', sigla: 'E1', pais: listPais[0]),
+      Estado(nome: 'Est222', sigla: 'E2', pais: listPais[0]),
+      Estado(nome: 'Est333', sigla: 'E3', pais: listPais[1]),
     ];
 
-    for(Estado obj in list) {
-      estadoDb.insert(obj);
+    for(Estado obj in listEstado) {
+      await estadoDb.insert(obj);
       print(obj.toString());
     }
+
   }
+
+
 }

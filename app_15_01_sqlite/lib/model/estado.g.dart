@@ -14,8 +14,8 @@ Estado _$EstadoFromJson(Map<String, dynamic> json) => Estado(
     );
 
 Map<String, dynamic> _$EstadoToJson(Estado instance) => <String, dynamic>{
-      'id': instance.id,
+//      'id': instance.id,              // OBS: comentar esta linha, para autoincrement
       'nome': instance.nome,
       'sigla': instance.sigla,
-      'pais': instance.pais,
+      'pais': instance.pais.toJson(),   // OBS: adicionar .toJson()
     };
