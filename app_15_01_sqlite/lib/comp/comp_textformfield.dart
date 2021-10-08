@@ -38,12 +38,12 @@ class CompTextFormField extends StatelessWidget
       this.inputController,
       {
         this.labelColor=Colors.grey,
-        this.labelSize=22,
+        this.labelSize=16,
 
         this.inputType=TextInputType.text,
         this.inputColor=Colors.black87,
-        this.inputSize=20,
-        this.inputMaxLength=50,
+        this.inputSize=14,
+        this.inputMaxLength=10,
         this.inputObscure=false,
         this.inputValidator,
         this.inputAction=TextInputAction.next,
@@ -53,7 +53,7 @@ class CompTextFormField extends StatelessWidget
         this.inputListFormatter,
 
         this.hintColor=Colors.black54,
-        this.hintSize=18
+        this.hintSize=16
       }
   );
 

@@ -16,12 +16,13 @@ class _PageHomeState extends State<PageHome>
 {
   PaisDb paisDb = PaisDb();
   EstadoDb estadoDb = EstadoDb();
+  TextEditingController _contID = TextEditingController();
   late String str;
 
   @override
   void initState() {
     super.initState();
-    str = "vazio";
+    str = "";
   }
 
   @override
@@ -47,14 +48,27 @@ class _PageHomeState extends State<PageHome>
         padding: EdgeInsets.all(20),  // material design: 16
         child: ListView(
           children: [
-            CompElevatedButton("Create Estado", _onClickCreateEstado, height: 40, fontSize: 20, colorBG: Colors.blue),
+            CompTextFormField("ID/Sufixo", "Digite o ID/Sufixo ", _contID, inputType: TextInputType.number),
             SizedBox(height: 20),
-            CompElevatedButton("Read Estado",   _onClickReadEstado, height: 40, fontSize: 20, colorBG: Colors.blue),
+
+            CompElevatedButton("Create Pais", _onClickCreatePais, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
+            CompElevatedButton("Read Pais",   _onClickReadPais, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
+            CompElevatedButton("Update Pais", _onClickUpdatePais, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
+            CompElevatedButton("Delete Pais", _onClickDeletePais, height: 30, fontSize: 16, colorBG: Colors.blue),
             SizedBox(height: 20),
-            CompElevatedButton("Update Estado", _onClickUpdateEstado, height: 40, fontSize: 20, colorBG: Colors.blue),
+
+            CompElevatedButton("Create Estado (com pais[0])", _onClickCreateEstado, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
+            CompElevatedButton("Read Estado",   _onClickReadEstado, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
+            CompElevatedButton("Update Estado", _onClickUpdateEstado, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
+            CompElevatedButton("Delete Estado", _onClickDeleteEstado, height: 30, fontSize: 16, colorBG: Colors.blue),
             SizedBox(height: 20),
-            CompElevatedButton("Delete Estado", _onClickDeleteEstado, height: 40, fontSize: 20, colorBG: Colors.blue),
-            SizedBox(height: 20),
+            CompElevatedButton("DELETE ALL ROWS", _onClickDeleteAllRows, height: 30, fontSize: 16, colorBG: Colors.red),
             Text( str ),
           ],
         ),
@@ -62,15 +76,72 @@ class _PageHomeState extends State<PageHome>
   }
 
   //----------------------------------------------------------------------------
-  // EVENTO
+  // EVENTOS PAIS
+  //----------------------------------------------------------------------------
+  Future<void> _onClickCreatePais() async
+  {
+    print("_onClickCreatePais");
+
+    String id = _contID.text;
+    Pais pais = Pais(nome: "Pais Novo " + id);
+    paisDb.insert(pais);
+  }
+
+  Future<void> _onClickReadPais() async
+  {
+    print("_onClickReadPais");
+
+    List<Pais> list = await paisDb.getAll();
+    str = "";
+
+    setState(() {
+      for(Pais obj in list) {
+        str = str + obj.toString() + "\n";
+      }
+    });
+  }
+
+  Future<void> _onClickUpdatePais() async
+  {
+    print("_onClickUpdatePais");
+
+    List<Pais> listPais = await paisDb.getAll();
+    String idStr = _contID.text;
+    int id = int.parse(idStr);
+    Pais pais = filterPais(listPais, id)!;
+
+    if(pais != null) {
+      pais.nome = pais.nome + " MODIF!";
+      await paisDb.update(pais);
+    }
+  }
+
+  Future<void> _onClickDeletePais() async
+  {
+    print("_onClickDeletePais");
+
+    List<Pais> listPais = await paisDb.getAll();
+    String idStr = _contID.text;
+    int id = int.parse(idStr);
+    Pais pais = filterPais(listPais, id)!;
+
+    if(pais != null) {
+      await paisDb.delete(pais);
+    }
+  }
+
+  //----------------------------------------------------------------------------
+  // EVENTOS ESTADO
   //----------------------------------------------------------------------------
   Future<void> _onClickCreateEstado() async
   {
     print("_onClickCreateEstado");
 
+    String id = _contID.text;
     List<Pais> listPais = await paisDb.getAll();
-    Estado estado = Estado(id: 0, nome: 'NOVO', sigla: 'NV', pais: listPais[0]);
+    Estado estado = Estado(nome: "Estado Novo " + id, sigla: "PN"+id, pais: listPais[0]);
     estadoDb.insert(estado);
+
   }
 
   Future<void> _onClickReadEstado() async
@@ -78,32 +149,52 @@ class _PageHomeState extends State<PageHome>
     print("_onClickReadEstado");
 
     List<Estado> list = await estadoDb.getAll();
+    str = "";
 
-    for(Estado obj in list) {
-      print(obj.toString());
-      str = str + obj.toString() + "\n";
-    }
-
-    setState(() {});
+    setState(() {
+      for(Estado obj in list) {
+        str = str + obj.toString() + "\n";
+      }
+    });
   }
 
   Future<void> _onClickUpdateEstado() async
   {
     print("_onClickUpdateEstado");
 
-    List<Estado> list = await estadoDb.getAll();
-    Estado estado = list[0];
-    estado.nome = estado.nome + "MODIF";
-    await estadoDb.update(estado);
+    List<Estado> listEstado = await estadoDb.getAll();
+    String idStr = _contID.text;
+    int id = int.parse(idStr);
+    Estado estado = filterEstado(listEstado, id)!;
+
+    if(estado != null) {
+      estado.nome = estado.nome + " MODIF!";
+      await estadoDb.update(estado);
+    }
   }
 
   Future<void> _onClickDeleteEstado() async
   {
     print("_onClickDeleteEstado");
 
-    List<Estado> list = await estadoDb.getAll();
-    Estado estado = list[0];
-    await estadoDb.delete(estado);
+    List<Estado> listEstado = await estadoDb.getAll();
+    String idStr = _contID.text;
+    int id = int.parse(idStr);
+    Estado estado = filterEstado(listEstado, id)!;
+
+    if(estado != null) {
+      await estadoDb.delete(estado);
+    }
+  }
+
+  //----------------------------------------------------------------------------
+  // EVENTOS BD
+  //----------------------------------------------------------------------------
+  Future<void> _onClickDeleteAllRows() async
+  {
+    print("_onClickDeleteAllRows");
+    estadoDb.deleteAll();
+    paisDb.deleteAll();
   }
 
   //----------------------------------------------------------------------------
@@ -139,5 +230,27 @@ class _PageHomeState extends State<PageHome>
 
   }
 
+  //----------------------------------------------------------------------------
+  // UTEIS
+  //----------------------------------------------------------------------------
+  Pais? filterPais(List<Pais> list, int id)
+  {
+    for(Pais obj in list) {
+      if(obj.id == id) {
+        return obj;
+      }
+    }
+    return null;
+  }
+
+  Estado? filterEstado(List<Estado> list, int id)
+  {
+    for(Estado obj in list) {
+      if(obj.id == id) {
+        return obj;
+      }
+    }
+    return null;
+  }
 
 }

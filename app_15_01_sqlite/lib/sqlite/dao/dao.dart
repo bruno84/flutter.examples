@@ -2,6 +2,7 @@
 abstract class Dao<T>
 {
   String get createTableQuery;
+  String get deleteAllRowsQuery;
   String get tableName;
   String get id;
 

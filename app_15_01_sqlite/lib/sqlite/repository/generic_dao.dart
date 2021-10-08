@@ -29,6 +29,11 @@ class GenericDao<T>
     return await db.delete(dao.tableName, where: dao.id + " = ?", whereArgs: [obj.id]);
   }
 
+  void deleteAll() async {
+    final Database db = await getDatabase();
+    await db.execute(dao.deleteAllRowsQuery);
+  }
+
   Future<List<T>> getAll() async {
     final Database db = await getDatabase();
     List<Map<String, dynamic>> maps = await db.query(dao.tableName);

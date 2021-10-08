@@ -22,6 +22,9 @@ class PaisDao implements Dao<Pais>
       " $_nome TEXT)";
 
   @override
+  String get deleteAllRowsQuery => "DELETE FROM $tableName";
+
+  @override
   Future<Pais> fromMap(Map<String, dynamic> query) async {
     return Pais.fromJson(query);
   }

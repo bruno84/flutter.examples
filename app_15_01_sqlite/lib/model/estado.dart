@@ -58,7 +58,7 @@ class Estado
 
   @override
   String toString() {
-    return 'Estado{id: $id, nome: $nome, sigla: $sigla, pais: $pais}';
+    return "Estado{id: $id, nome: $nome, sigla: $sigla, pais: $pais}";
   }
 
   factory Estado.fromJson(Map<String, dynamic> json) => _$EstadoFromJson(json);

@@ -27,6 +27,9 @@ class EstadoDao implements Dao<Estado>
       " $_paisId TEXT)";
 
   @override
+  String get deleteAllRowsQuery => "DELETE FROM $tableName";
+
+  @override
   Future<Estado> fromMap(Map<String, dynamic> query) async {
     Map<String, dynamic>? estadoJson = Map.of(query);
     estadoJson[_paisId] = await PaisDao.instance().getObjMap(query[_paisId]);
@@ -70,4 +73,5 @@ class EstadoDao implements Dao<Estado>
     }
     return null;
   }
+
 }
