@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 String firebaseUserUid = "";
 
-class FirebaseService
+class FacadeFirebaseService
 {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _fbAuth = FirebaseAuth.instance;

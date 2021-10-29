@@ -28,17 +28,29 @@ dependencies:
   # https://pub.dev/packages/auth_buttons
   auth_buttons: ^1.0.1+4
 
-  # Bruno: FireBase: autenticação
-  # https://pub.dev/packages/firebase_auth
-  firebase_auth: ^3.1.1
-
   # Bruno: FireBase: lib base
   # https://pub.dev/packages/firebase_core
   firebase_core: ^1.6.0
 
-  # Bruno: FireBase: Google SignIn
+  # Bruno: FireBase: autenticação
+  # https://pub.dev/packages/firebase_auth
+  firebase_auth: ^3.1.1
+
+  # Bruno: Google: SignIn
   # https://pub.dev/packages/google_sign_in
   google_sign_in: ^5.1.0
+
+  # Bruno: FireBase: Banco de dados
+  # https://pub.dev/packages/cloud_firestore
+  cloud_firestore: ^2.5.4
+
+  # Bruno: FireBase: Storage
+  # https://pub.dev/packages/firebase_storage
+  firebase_storage: ^10.0.6
+
+  # Bruno: carregar imagens
+  # https://pub.dev/packages/image_picker
+  image_picker: ^0.8.4+3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

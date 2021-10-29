@@ -1,6 +1,8 @@
 import 'package:app_12_01_firebase/comp/comp_elevatedbutton.dart';
-import 'package:app_12_01_firebase/firebase/firebase_service.dart';
+import 'package:app_12_01_firebase/firebase/facade_firebase_service.dart';
 import 'package:app_12_01_firebase/firebase/response.dart';
+import 'package:app_12_01_firebase/pages/page_firestore.dart';
+import 'package:app_12_01_firebase/pages/page_storage.dart';
 import 'package:app_12_01_firebase/pages/page_login.dart';
 import 'package:app_12_01_firebase/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,13 +16,14 @@ class PageHome extends StatefulWidget
 
 class _PageHomeState extends State<PageHome>
 {
-  final fbService = FirebaseService();
+  // Autenticacao
+  final fbService = FacadeFirebaseService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("APP 12 - Home"),
+        title: Text("APP 12-01 - Home"),
         centerTitle: true,
       ),
       body: _body(),
@@ -29,7 +32,6 @@ class _PageHomeState extends State<PageHome>
 
   Container _body()
   {
-    print("body");
     String userStr = "";
 
     fbService.getUser().then((value) {
@@ -42,33 +44,39 @@ class _PageHomeState extends State<PageHome>
         color: Colors.white,
         child: ListView(
           children: [
-            Center(
-                child: Text("Uma linda tela de Home!!!")
-            ),
-            SizedBox(height: 20),
 
             FutureBuilder(
                 future: fbService.getUser(),
                 builder: (context, snapshot)
                 {
                     return Center(
-                      child: Text("user: " + userStr),
+                      child: SelectableText("user: " + userStr),
                     );
                 }
             ),
+            SizedBox(height: 10),
 
-            SizedBox(height: 20),
-            CompElevatedButton("Logout", _onClickGoogleLogout, height: 50, fontSize: 22, colorBG: Colors.blue),
+            CompElevatedButton("Logout", _onClickGoogleLogout, height: 30, fontSize: 16, colorBG: Colors.red),
+            SizedBox(height: 10),
+
+            CompElevatedButton("Page Firestore", _onClickPageFirestore, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
+
+            CompElevatedButton("Page Storage", _onClickPageStorage, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
           ],
         )
     );
   }
 
+
+  //----------------------------------------------------------------------------
+  // EVENTOS
+  //----------------------------------------------------------------------------
   _onClickGoogleLogout() async
   {
     print("_onClickGoogleLogout");
 
-    final fbService = FirebaseService();
     Response response = await fbService.logout();
 
     if (response.ok) {
@@ -77,4 +85,17 @@ class _PageHomeState extends State<PageHome>
       print("Erro: " + response.msg);
     }
   }
+
+  _onClickPageFirestore() async
+  {
+    print("_onClickPageFirestore");
+    await push(context, PageFBFirestore(), flagBack: true);
+  }
+
+  _onClickPageStorage() async
+  {
+    print("_onClickPageStorage");
+    await push(context, new PageFBStorage(), flagBack: true);
+  }
+
 }

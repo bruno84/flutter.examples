@@ -1,10 +1,11 @@
 import 'package:app_12_01_firebase/comp/comp_elevatedbutton.dart';
 import 'package:app_12_01_firebase/comp/comp_textformfield.dart';
-import 'package:app_12_01_firebase/firebase/firebase_service.dart';
+import 'package:app_12_01_firebase/firebase/facade_firebase_service.dart';
 import 'package:app_12_01_firebase/firebase/response.dart';
 import 'package:app_12_01_firebase/pages/page_home.dart';
 import 'package:app_12_01_firebase/utils/utils.dart';
 import 'package:auth_buttons/auth_buttons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,8 @@ class PageLogin extends StatefulWidget {
 
 class _PageLogin extends State<PageLogin>
 {
-  static String userEmail = "";
+  final FirebaseAuth _fbAuth = FirebaseAuth.instance;
+  late String _status = "";
 
   // key: identificador de cada componente
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -69,8 +71,21 @@ class _PageLogin extends State<PageLogin>
               child: GoogleAuthButton(
                 onPressed: _onClickGoogleLogin,
               ),
-            )
+            ),
+            SizedBox(height: 50),
 
+            CompTextFormField("Email", "Digite seu email", _contEmail, inputType: TextInputType.emailAddress),
+            SizedBox(height: 20),
+            CompTextFormField("Senha", "Digite sua senha", _contPass, inputType: TextInputType.number),
+            SizedBox(height: 20),
+
+            CompElevatedButton("Login com email", _onClickEmailLogin, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
+            CompElevatedButton("Create com email", _onClickEmailCreate, height: 30, fontSize: 16, colorBG: Colors.blue),
+            SizedBox(height: 10),
+
+            Text(_status),
+            SizedBox(height: 10),
           ],
         ),
       ),
@@ -85,7 +100,7 @@ class _PageLogin extends State<PageLogin>
   {
     print("_onClickGoogleLogin");
 
-    final fbService = FirebaseService();
+    final fbService = FacadeFirebaseService();
     Response response = await fbService.loginGoogle();
 
     if (response.ok) {
@@ -95,5 +110,37 @@ class _PageLogin extends State<PageLogin>
     }
   }
 
+
+  Future<void> _onClickEmailLogin() async
+  {
+    print("_onClickEmailLogin");
+
+    String email = _contEmail.text;
+    String pass = _contPass.text;
+
+    _fbAuth.signInWithEmailAndPassword(email: email, password: pass).then((firebaseUser) async {
+      await push( context, PageHome(), flagBack: false);
+    }).catchError((erro){
+      _status = "Erro no login: " + erro.toString();
+    });
+
+    setState(() { });
+  }
+
+  Future<void> _onClickEmailCreate() async
+  {
+    print("_onClickEmailCreate");
+
+    String email = _contEmail.text;
+    String pass = _contPass.text;
+
+    _fbAuth.createUserWithEmailAndPassword(email: email, password: pass).then((firebaseUser) {
+      _status = "Sucesso! email: ${firebaseUser.user!.email}";
+    }).catchError((erro){
+      _status = "Erro no create: " + erro.toString();
+    });
+
+    setState(() { });
+  }
 
 }
