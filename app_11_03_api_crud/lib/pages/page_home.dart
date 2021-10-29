@@ -40,7 +40,6 @@ class PageHome extends StatelessWidget
             return Text( str );
           }),
 
-          Text( str ),
         ],
       ),
     );
