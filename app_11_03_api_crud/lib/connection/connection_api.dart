@@ -7,15 +7,6 @@ class ConnectionApi
   static String _host = "jsonplaceholder.typicode.com";
   static Map<String,String> _header = {"Content-type": "application/json; charset=UTF-8"};
 
-  // CREATE
-  static Future<String> create(Post post) async
-  {
-    var uri = Uri.https(_host, "/posts");
-    var corpo = json.encode( post.toJson() );
-    http.Response response = await http.post( uri, headers: _header, body: corpo );
-    return "CREATE code: ${response.statusCode} body: ${response.body}";
-  }
-
   // READ
   static Future<List<Post>> read() async
   {
@@ -36,6 +27,15 @@ class ConnectionApi
     }
 
     return listObj;
+  }
+
+  // CREATE
+  static Future<String> create(Post post) async
+  {
+    var uri = Uri.https(_host, "/posts");
+    var corpo = json.encode( post.toJson() );
+    http.Response response = await http.post( uri, headers: _header, body: corpo );
+    return "CREATE code: ${response.statusCode} body: ${response.body}";
   }
 
   // UPDATE (com put)

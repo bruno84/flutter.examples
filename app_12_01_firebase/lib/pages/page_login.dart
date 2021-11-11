@@ -29,9 +29,6 @@ class _PageLogin extends State<PageLogin>
   TextEditingController _contEmail = TextEditingController();
   TextEditingController _contPass = TextEditingController();
 
-  // OBS: em um form com vários campos, precisaria ter um para cada (exceto o primeiro)
-  FocusNode _focusPass = FocusNode();
-
   // initState: Configura a tela na inicialização com dados que podem estar sendo obtidos em tempo de execução.
   @override
   void initState()
@@ -121,10 +118,12 @@ class _PageLogin extends State<PageLogin>
     _fbAuth.signInWithEmailAndPassword(email: email, password: pass).then((firebaseUser) async {
       await push( context, PageHome(), flagBack: false);
     }).catchError((erro){
-      _status = "Erro no login: " + erro.toString();
+      setState(() {
+        _status = "Erro no login: " + erro.toString();
+      });
     });
 
-    setState(() { });
+    setState(() {});
   }
 
   Future<void> _onClickEmailCreate() async
@@ -135,12 +134,16 @@ class _PageLogin extends State<PageLogin>
     String pass = _contPass.text;
 
     _fbAuth.createUserWithEmailAndPassword(email: email, password: pass).then((firebaseUser) {
-      _status = "Sucesso! email: ${firebaseUser.user!.email}";
+      setState(() {
+        _status = "Sucesso! email: ${firebaseUser.user!.email}";
+      });
     }).catchError((erro){
-      _status = "Erro no create: " + erro.toString();
+      setState(() {
+        _status = "Erro no create: " + erro.toString();
+      });
     });
 
-    setState(() { });
+
   }
 
 }

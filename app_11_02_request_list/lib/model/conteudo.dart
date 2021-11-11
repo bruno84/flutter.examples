@@ -1,44 +1,53 @@
 
 // OBS: classe criada com: https://javiercbk.github.io/json_to_dart/
-// OBS: classe baseada na API de teste: https://jsonplaceholder.typicode.com/todos/
+// OBS: classe baseada na API de teste: https://reqres.in/
 // Só adicionei as mudanças do null safety.
 
 class Conteudo
 {
-  late int _userId;
-  late int _id;
-  late String _title;
-  late bool _completed;
+  late int _page;
+  late int _per_page;
+  late int _total;
+  late int _total_pages;
 
-  Conteudo(this._userId, this._id, this._title, this._completed);
+  late int _id;
+  late String _name;
+  late int _year;
+  late String _color;
+  late String _pantoneValue;
+
+  Conteudo(this._id, this._name, this._year, this._color, this._pantoneValue);
 
   // Getters
-  int get userId => _userId;
   int get id => _id;
-  String get title => _title;
-  bool get completed => _completed;
+  String get name => _name;
+  int get year => _year;
+  String get color => _color;
+  String get pantoneValue => _pantoneValue;
 
   // Json -> Objeto
-  Conteudo.fromJson(Map<String, dynamic> json) {
-    _userId = json['userId'];
+  Conteudo.fromJson(Map<String, dynamic> json)
+  {
     _id = json['id'];
-    _title = json['title'];
-    _completed = json['completed'];
+    _name = json['name'];
+    _year = json['year'];
+    _color = json['color'];
+    _pantoneValue = json['pantone_value'];
   }
 
   // Objeto -> Json
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userId'] = this._userId;
     data['id'] = this._id;
-    data['title'] = this._title;
-    data['completed'] = this._completed;
+    data['name'] = this._name;
+    data['year'] = this._year;
+    data['color'] = this._color;
+    data['pantone_value'] = this._pantoneValue;
     return data;
   }
 
   @override
   String toString() {
-    return "Conteudo{userId: $_userId, id: $_id, title: $_title, completed: $_completed}\n";
+    return 'Conteudo{_id: $_id, _name: $_name, _year: $_year, _color: $_color, _pantoneValue: $_pantoneValue} \n';
   }
-
 }

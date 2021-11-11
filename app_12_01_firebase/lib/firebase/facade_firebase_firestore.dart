@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:app_12_01_firebase/model/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -19,7 +17,6 @@ class FacadeFirebaseFirestore
 
     QuerySnapshot querySnapshot = await firestore.collection("post").get();
 
-    /*
     // Estrategia 1: simples, mas um pouco ineficiente:
     for( DocumentSnapshot item in querySnapshot.docs )
     {
@@ -28,14 +25,15 @@ class FacadeFirebaseFirestore
       post.id = item.id;
       listObj.add(post);
     }
-    */
 
+    /*
     // Estrategia 2: confusa, mas um pouco mais eficiente:
     listObj = querySnapshot.docs.map( (item) {
       Post post = Post.fromJson(item.data() as Map<String, dynamic>);
       post.id = item.id;
       return post;
     }).toList();
+    */
 
     return listObj;
   }
@@ -46,13 +44,14 @@ class FacadeFirebaseFirestore
     Map<String, dynamic> map = post.toJson();
     DocumentReference ref = await firestore.collection("post").add(map);
 
-    return ref.toString(); // ID
+    return ref.id; // ID
   }
 
   // UPDATE (com put)
   Future<String> updatePost(String id, Post post) async
   {
     Map<String, dynamic> map = post.toJson();
+
     await firestore.collection("post").doc(id).set(map);
 
     return "OK";

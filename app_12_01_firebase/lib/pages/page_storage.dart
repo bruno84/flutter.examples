@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:app_12_01_firebase/comp/comp_elevatedbutton.dart';
-import 'package:app_12_01_firebase/firebase/facade_firebase_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

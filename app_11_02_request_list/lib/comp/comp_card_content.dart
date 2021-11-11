@@ -34,7 +34,7 @@ class CompCardContent extends StatelessWidget
                     borderRadius: BorderRadius.circular(20)
                 ),
                 child: Text(
-                    conteudo.title,
+                    conteudo.name,
                     style: TextStyle(
                         fontSize: 20, color: Colors.white
                     )

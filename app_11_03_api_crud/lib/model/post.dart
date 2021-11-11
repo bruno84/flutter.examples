@@ -1,4 +1,13 @@
-class Post {
+
+// OBS: classe criada com:
+// https://javiercbk.github.io/json_to_dart/
+// (só adicionei as mudanças do null safety).
+
+// OBS: classe baseada na API de teste:
+// https://jsonplaceholder.typicode.com/todos/
+
+class Post
+{
   late int _id;
   late String _title;
   late String _body;

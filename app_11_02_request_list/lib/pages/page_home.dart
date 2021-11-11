@@ -47,8 +47,8 @@ class PageHome extends StatelessWidget
     // GestureDetector: trata evento do card (Stack), que é filho dele.
     return GestureDetector(
         onTap: () {
-          print(conteudo.title);
-          Alerts.showSnackBar(context, "Title: ${conteudo.title}");
+          print(conteudo.name);
+          Alerts.showSnackBar(context, "Title: ${conteudo.color}");
         },
         child: CompCardContent(conteudo)
     );
