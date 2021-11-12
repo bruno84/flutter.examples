@@ -5,9 +5,9 @@ class DropDownString extends StatefulWidget
   late List<String> listItem = [];
   late dynamic callback;
   late String hint;
-  late String? valueDefault;
+  late String? value;
 
-  DropDownString(this.listItem, ValueChanged<String> this.callback, {this.hint="Lista de itens", this.valueDefault} );
+  DropDownString(this.listItem, ValueChanged<String> this.callback, {this.hint="Lista de itens", this.value} );
 
   @override
   DropDownStringState createState() {
@@ -17,22 +17,30 @@ class DropDownString extends StatefulWidget
 
 class DropDownStringState extends State<DropDownString>
 {
+  var _selectedItem;
+
   @override
   Widget build(BuildContext context)
   {
     return DropdownButton<String>(
-      value: widget.valueDefault,
+      hint: Text(widget.hint, style: TextStyle(fontSize: 40)),
       isExpanded: true,
       items: widget.listItem.map((String str) {
-        return new DropdownMenuItem<String>(
+        return DropdownMenuItem<String>(
           value: str,
-          child: new Text(str, style: TextStyle(fontSize: 20) ),
+          child: Text(str, style: TextStyle(fontSize: 20) ),
         );
       }).toList(),
-      hint: Text(widget.hint),
       onChanged: (newValue) {
         widget.callback(newValue);
+        setState(() {
+          _selectedItem = newValue!;
+        });
       },
+      value: _selectedItem,
     );
   }
-}
+
+
+
+  }

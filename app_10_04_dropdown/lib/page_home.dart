@@ -34,7 +34,7 @@ class _PageHomeState extends State<PageHome>
         child: Center(
           child: ListView(
             children: [
-              DropDownString(listItem, _onCorChanged, hint: "Lista de Cores" ),
+              DropDownString(listItem, _onCorChanged, hint: "Lista de Cores", ),
               SizedBox(height: 50),
               Text("Cor selecionada: $corStr", style: TextStyle(color: color, fontSize: 20) )
             ],
@@ -45,9 +45,8 @@ class _PageHomeState extends State<PageHome>
 
   void _onCorChanged(String value)
   {
-    print("> $value");
-
-    setState(() {
+    setState(()
+    {
       corStr = value;
       if ("Azul" == value) {
         color = Colors.blue;

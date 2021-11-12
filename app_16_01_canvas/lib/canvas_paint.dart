@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CanvasPaint extends CustomPainter
 {
   // Origem: canto superior-esquerdo
+  @override
   void paint(Canvas canvas, Size size)
   {
     // Paint

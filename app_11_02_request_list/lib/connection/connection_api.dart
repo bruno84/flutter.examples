@@ -11,7 +11,7 @@ class ConnectionApi
   {
     List<Conteudo> listObj = [];
 
-    var url = Uri.https(_host, "/api/unknown/");
+    var url = Uri.https(_host, '/api/unknown?page=2');  // OBS: Parametrize o numero da pagina
     var response = await http.get(url);
 
     if(response.statusCode != 200) {
