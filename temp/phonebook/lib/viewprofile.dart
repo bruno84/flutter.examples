@@ -66,17 +66,6 @@ final  TextEditingController textEditingControllerName = TextEditingController()
                 },
                 icon: const Icon(Icons.change_circle),
                 label: const Text("EDITAR PERFIL"),
-                style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.resolveWith((states) {
-                    return const Size.fromHeight(48);
-                  }),
-                  elevation: MaterialStateProperty.resolveWith((states) {
-                    return 0;
-                  }),
-                  shape: MaterialStateProperty.resolveWith((states) {
-                    return RoundedRectangleBorder(borderRadius: BorderRadius.circular(24));
-                  }),
-                ),
               ),
                     ],
                   ),
