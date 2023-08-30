@@ -46,7 +46,7 @@ class _PageHomeState extends State<PageHome>
     if (imageFile != null) {
       return Image.file(
         imageFile,
-        height: 400,
+        height: 500,
         fit: BoxFit.fitHeight,
       );
     }
