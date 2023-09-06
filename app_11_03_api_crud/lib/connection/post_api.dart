@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../model/post.dart';
 
-class ConnectionApi
+class PostAPI
 {
   static String _host = "jsonplaceholder.typicode.com";
   static Map<String,String> _header = {"Content-type": "application/json; charset=UTF-8"};

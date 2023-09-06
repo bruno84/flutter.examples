@@ -1,4 +1,4 @@
-import 'package:app_11_03_api_crud/connection/connection_api.dart';
+import 'package:app_11_03_api_crud/connection/post_api.dart';
 import 'package:app_11_03_api_crud/model/post.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
@@ -16,34 +16,34 @@ class ControllerHome extends GetxController
     print("ControllerHome: onInit()");
     super.onInit();
 
-    _listPost = await ConnectionApi.read();
+    _listPost = await PostAPI.read();
     update();
   }
 
   // CREATE   Sucesso: 201 Created
   Future<String> createPost(Post post) async {
-    String str = await ConnectionApi.create(post);
+    String str = await PostAPI.create(post);
     update();
     return str;
   }
 
   // READ   Sucesso: 200 OK
   Future<List<Post>> readPost() async {
-    _listPost = await ConnectionApi.read();
+    _listPost = await PostAPI.read();
     update();
     return _listPost;
   }
 
   // UPDATE PUT   Sucesso: 200 OK
   Future<String> updatePutPost(int id, Post post) async {
-    String str = await ConnectionApi.updatePut(id, post);
+    String str = await PostAPI.updatePut(id, post);
     update();
     return str;
   }
 
   // DELETE
   Future<String> deletePost(int id) async {
-    String str = await ConnectionApi.delete(id);
+    String str = await PostAPI.delete(id);
     update();
     return str;
   }

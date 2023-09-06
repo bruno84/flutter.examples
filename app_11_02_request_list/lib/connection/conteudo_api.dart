@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:app_11_02_request_list/model/response_generic.dart';
+import 'package:app_11_02_request_list/connection/response_generic.dart';
 import 'package:http/http.dart' as http;
 import '../model/conteudo.dart';
 
-class ConnectionApi
+class ConteudoAPI
 {
   static String _host = "reqres.in";
 

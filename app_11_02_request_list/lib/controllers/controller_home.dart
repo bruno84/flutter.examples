@@ -1,4 +1,4 @@
-import 'package:app_11_02_request_list/connection/connection_api.dart';
+import 'package:app_11_02_request_list/connection/conteudo_api.dart';
 import 'package:app_11_02_request_list/model/conteudo.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
@@ -16,7 +16,7 @@ class ControllerHome extends GetxController
     print("ControllerHome: onInit()");
     super.onInit();
 
-    _listContent = await ConnectionApi.getListConteudo();
+    _listContent = await ConteudoAPI.getListConteudo();
     update();
 
     // OBS: assim, o fluxo nao fica esperando os dados serem carregados.
