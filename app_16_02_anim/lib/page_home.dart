@@ -1,4 +1,3 @@
-import 'package:app_16_02_anim/comp/comp_elevatedbutton.dart';
 import 'package:flutter/material.dart';
 
 class PageHome extends StatefulWidget
@@ -28,7 +27,7 @@ class _PageHomeState extends State<PageHome>
         color: Colors.white,
       child: ListView(
         children: [
-          CompElevatedButton("Mudar", onClickMudar),
+          ElevatedButton(child: Text("Mudar"), onPressed: onClickMudar, ),
           _anim1(),
         ],
       ),
@@ -46,7 +45,6 @@ class _PageHomeState extends State<PageHome>
   {
     return AnimatedContainer(
       padding: EdgeInsets.all(20),
-      width: _status ? 200 : 300 ,
       height: _status ? 300 : 200,
       color: _status ? Colors.blue : Colors.green,
       child: Image.network("https://i0.wp.com/assecom.ufersa.edu.br/wp-content/uploads/sites/24/2018/01/assinatura_completa_cor_RGB-1-e1516038703426.png?resize=300%2C90&ssl=1"),
