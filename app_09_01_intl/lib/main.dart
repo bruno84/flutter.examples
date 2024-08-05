@@ -5,6 +5,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 // IMPORTANTE: só descomente esta linha quando der run uma primeira vez (e der reload) sem isso:
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+// IMPORTANTE:
+// garanta que o seguinte arquivo esteja na raiz do projeto: l10n.yaml
+
 void main() {
   runApp(Main());
 }

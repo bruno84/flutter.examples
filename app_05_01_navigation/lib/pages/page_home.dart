@@ -14,14 +14,18 @@ class PageHome extends StatelessWidget
     );
   }
 
-  _body(BuildContext context) {
+  // SizedBox.expand : usado para expandir o espaço do widget pai.
+  _body(BuildContext context)
+  {
     return Container(
         color: Colors.white,
-        child: Column (
-            children: [
-              _button("Page 01", 1, context),
-              _button("Page 02", 2, context),
-            ]
+        child: SizedBox.expand(
+          child: Column (
+              children: [
+                _button("Page 01", 1, context),
+                _button("Page 02", 2, context),
+              ]
+          ),
         ),
     );
   }

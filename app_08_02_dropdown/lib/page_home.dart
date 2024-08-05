@@ -20,7 +20,7 @@ class _PageHomeState extends State<PageHome>
   {
     return Scaffold(
       appBar: AppBar(
-        title: Text("APP 11_4 - Dropdown"),
+        title: Text("APP 08_02 - Dropdown"),
         centerTitle: true,
       ),
       body: _body(),

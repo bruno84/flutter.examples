@@ -13,14 +13,13 @@ class PageHome extends StatelessWidget
     );
   }
 
-  // Center: componente que centraliza componente filho
-  // SizedBox: componente para ocupar tela do componente pai
-  _body() {
+  // OBS: 16px é a margem minima recomendada no material design.
+  _body()
+  {
     return Container(
       color: Colors.white,
-      //height: 600,
-      //width: 300,
-      //child: SizedBox.expand(
+      margin: EdgeInsets.all(16),     // margin: espaço "da borda para fora"
+      padding: EdgeInsets.all(50),    // padding: espaço "da borda para dentro"
       child: Center(
         child: _pageView(),
       ),
@@ -28,16 +27,11 @@ class PageHome extends StatelessWidget
   }
 
   // ATENÇÃO! é preciso colocar o PageView em um Container para definir altura.
-
-  // padding: espaço "da borda para dentro"
-  // margin: espaço "da borda para fora"
-  // OBS: 16px é a margem minima recomendada no material design.
-  _pageView() {
+  _pageView()
+  {
     return Container(
       height: 300,
       color: Colors.red,
-      padding: EdgeInsets.all(50),
-      margin: EdgeInsets.all(16),
       child: PageView(
         children: [
           _imgAsset("assets/images/image1.jpg"),
@@ -50,14 +44,6 @@ class PageHome extends StatelessWidget
     );
   }
 
-  /*
-    HABILITAR ASSETS:
-      1) Criar pastas: assets/images/
-      2) Editar: pubspec.yaml:
-      3) Descomentar: "assets:" e "- assets/images/" com identacao
-      4) Clicar em "Get dependecies"
-      5) Se não funcionar: Tools -> Flutter -> flutter clean
-  */
   _imgAsset(String path) {
     return Image.asset(
       path,
@@ -71,7 +57,5 @@ class PageHome extends StatelessWidget
       fit: BoxFit.contain,
     );
   }
-
-
 
 }

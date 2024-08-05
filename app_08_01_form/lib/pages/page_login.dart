@@ -1,12 +1,13 @@
 import 'package:app_08_01_form/comp/comp_elevatedbutton.dart';
 import 'package:app_08_01_form/comp/comp_textformfield.dart';
 import 'package:app_08_01_form/pages/page_home.dart';
-import 'package:app_08_01_form/utils/util_prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../utils/util_prefs.dart';
 
 // OBS: com StatefulWidget, já consigo obter o context como atributo da classe.
-class PageLogin extends StatefulWidget {
+class PageLogin extends StatefulWidget
+{
   @override
   _PageLogin createState() => _PageLogin();
 }

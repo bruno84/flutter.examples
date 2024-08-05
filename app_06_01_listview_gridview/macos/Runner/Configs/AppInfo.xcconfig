@@ -8,7 +8,7 @@
 PRODUCT_NAME = app_06_01_listview_gridview
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.youubi.app0601ListviewGridview
+PRODUCT_BUNDLE_IDENTIFIER = br.edu.brunomonteiro.app0601ListviewGridview
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 com.youubi. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 br.edu.brunomonteiro. All rights reserved.

@@ -5,15 +5,14 @@ class PageHome extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("APP 04-02 - Expanded"),
-      ),
+      appBar: AppBar(title: Text("APP 04-02 - Expanded") ),
       body: _body(context),
     );
   }
 
   // Expanded: componente que expande uma célula (Column/Row) proporcionalmente.
-  _body(context) {
+  _body(context)
+  {
     return Column(
       children: [
 
@@ -47,8 +46,5 @@ class PageHome extends StatelessWidget
       ],
     );
   }
-
-
-
 
 }

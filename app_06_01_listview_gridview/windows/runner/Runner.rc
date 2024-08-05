@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.youubi" "\0"
+            VALUE "CompanyName", "br.edu.brunomonteiro" "\0"
             VALUE "FileDescription", "app_06_01_listview_gridview" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "app_06_01_listview_gridview" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.youubi. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 br.edu.brunomonteiro. All rights reserved." "\0"
             VALUE "OriginalFilename", "app_06_01_listview_gridview.exe" "\0"
             VALUE "ProductName", "app_06_01_listview_gridview" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

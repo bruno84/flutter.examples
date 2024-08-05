@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'page_home.dart';
 
+/*
+  pubspec.yaml
+  dependencies:
+    fluttertoast: ^8.2.6
+ */
+
 void main() {
   runApp(Main());
 }

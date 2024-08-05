@@ -26,7 +26,7 @@ class CompButton extends StatelessWidget
           ),
         ),
         style: ElevatedButton.styleFrom(
-          primary: colorBG,
+          backgroundColor: colorBG,
         ),
         onPressed: onPressed
     );

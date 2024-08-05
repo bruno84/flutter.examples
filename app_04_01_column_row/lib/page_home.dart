@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class PageHome extends StatelessWidget
 {
-  // context: armazena as variaveis de contexto da aplicação.
+  // BuildContext: armazena variaveis de contexto (árvore de widgets, tema, tamanho da tela,  etc).
   @override
   Widget build(BuildContext context) {
     return Scaffold(
