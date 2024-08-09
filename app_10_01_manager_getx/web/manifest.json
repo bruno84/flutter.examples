@@ -1,6 +1,6 @@
 {
-    "name": "app_10_01_manager_get",
-    "short_name": "app_10_01_manager_get",
+    "name": "app_10_01_manager_getx",
+    "short_name": "app_10_01_manager_getx",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

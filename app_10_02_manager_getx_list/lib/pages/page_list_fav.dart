@@ -1,10 +1,10 @@
-import 'package:app_10_02_manager_get_list/comp/alerts.dart';
-import 'package:app_10_02_manager_get_list/comp/comp_card_content.dart';
-import 'package:app_10_02_manager_get_list/controllers/controller_list_fav.dart';
-import 'package:app_10_02_manager_get_list/controllers/controller_list_home.dart';
-import 'package:app_10_02_manager_get_list/model/conteudo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../comp/alerts.dart';
+import '../comp/comp_card_content.dart';
+import '../controllers/controller_list_fav.dart';
+import '../controllers/controller_list_home.dart';
+import '../model/conteudo.dart';
 
 class PageListFav extends StatelessWidget
 {

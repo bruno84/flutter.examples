@@ -1,19 +1,19 @@
-import 'package:app_10_01_manager_get/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/instance_manager.dart';
 import 'controllers/controller_main.dart';
+import 'routes/app_pages.dart';
+
+/*
+dependencies:
+  # BRUNO. https://pub.dev/packages/get/
+  get: ^4.6.6
+*/
 
 void main() {
   runApp(Main());
 }
-
-// GetMaterialApp (em vez de MaterialApp)
-// initialRoute: informa quem é a pagina inicial ("/")
-// getPages: informa onde as páginas estão sendo definidas
-
-// GetBuilder: deve envolver os componentes que sofrem update.
 
 class Main extends StatelessWidget
 {
@@ -22,16 +22,18 @@ class Main extends StatelessWidget
   {
     final controllerMain = Get.put( ControllerMain() );
 
+    // GetBuilder: deve envolver os componentes que sofrem update.
     return GetBuilder<ControllerMain>(
-      builder: (context) {
-        return GetMaterialApp(
+      builder: (context)
+      {
+        return GetMaterialApp(  // no lugar de MaterialApp
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: Colors.blue,
             brightness: controllerMain.brightness,
           ),
-          initialRoute: AppRoutes.pgHome,
-          getPages: AppPages().pages,
+          initialRoute: AppRoutes.pgHome, // informa quem é a pagina inicial ("/")
+          getPages: AppPages().pages,     // informa onde as páginas estão sendo definidas
         );
       },
     );

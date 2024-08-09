@@ -1,8 +1,8 @@
-import 'package:app_10_02_manager_get_list/bindings/binding_list_fav.dart';
-import 'package:app_10_02_manager_get_list/bindings/binding_list_home.dart';
-import 'package:app_10_02_manager_get_list/pages/page_list_fav.dart';
-import 'package:app_10_02_manager_get_list/pages/page_list_home.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import '../bindings/binding_list_fav.dart';
+import '../bindings/binding_list_home.dart';
+import '../pages/page_list_fav.dart';
+import '../pages/page_list_home.dart';
 
 // Define o path de cada tela
 abstract class AppRoutes

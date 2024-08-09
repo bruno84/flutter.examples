@@ -1,10 +1,11 @@
-import 'package:app_10_01_manager_get/controllers/controller_home.dart';
-import 'package:app_10_01_manager_get/controllers/controller_main.dart';
-import 'package:app_10_01_manager_get/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/get.dart';
+
+import '../controllers/controller_home.dart';
+import '../controllers/controller_main.dart';
+import '../routes/app_pages.dart';
 
 class PageHome extends StatelessWidget
 {

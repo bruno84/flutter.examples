@@ -1,5 +1,6 @@
-import 'package:app_10_02_manager_get_list/model/conteudo.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+
+import '../model/conteudo.dart';
 
 class ControllerListFav extends GetxController
 {
@@ -38,6 +39,5 @@ class ControllerListFav extends GetxController
     print("ControllerListFav: onClose()");
     super.onClose();
   }
-
 
 }

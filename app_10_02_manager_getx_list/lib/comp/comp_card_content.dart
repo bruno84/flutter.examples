@@ -1,6 +1,6 @@
-import 'package:app_10_02_manager_get_list/model/conteudo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../model/conteudo.dart';
 
 class CompCardContent extends StatelessWidget
 {
@@ -36,7 +36,6 @@ class CompCardContent extends StatelessWidget
           )
         ]
     );
-
   }
 
   _imgAsset(String path) {

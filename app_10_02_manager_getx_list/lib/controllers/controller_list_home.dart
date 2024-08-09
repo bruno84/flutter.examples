@@ -1,5 +1,5 @@
-import 'package:app_10_02_manager_get_list/model/conteudo.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import '../model/conteudo.dart';
 
 class ControllerListHome extends GetxController
 {
