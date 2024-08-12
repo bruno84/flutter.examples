@@ -5,6 +5,18 @@ import 'controller/controller_contato.dart';
 import 'page_perfil.dart';
 import 'page_update.dart';
 
+
+/*
+GetBuilder x Obx x Getx
+
+GetBuilder : para atualizar um widget manualmente, por meio do controller, com update().
+
+Obx : para atualizar um widget por meio de uma variável observável marcada com .obs
+
+Getx : combina os cenários do GetBuilder (manualmente) e Obx (observável).
+ */
+
+
 class PageHome extends StatelessWidget
 {
   static const String nomeRota = "/";
@@ -47,17 +59,41 @@ class PageHome extends StatelessWidget
               SizedBox(height: 12),
               Text("Agenda Telefônica", style: Theme.of(context).textTheme.titleLarge),
               SizedBox(height: 8,),
+
+
+              Obx( () =>
+                  Center(
+                      child: Text(
+                        "Há ${controllerContact.contatos.length} contatos (Obx)",
+                        style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[500]),
+                      )
+              )),
+
+              GetBuilder(
+                init: controllerContact,
+                builder: (controller) {
+                  return Center(
+                      child: Text(
+                        "Há ${controllerContact.contatos.length} contatos (GetBuilder)",
+                        style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[500]),
+                      )
+                  );
+                },
+              ),
+
               GetX(
                 init: controllerContact,
                 builder: (controller) {
                   return Center(
-                    child: Text(
-                      "Há ${controllerContact.contatos.length} contatos",
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[500]),
-                    )
+                      child: Text(
+                        "Há ${controllerContact.contatos.length} contatos (GetX)",
+                        style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.grey[500]),
+                      )
                   );
                 },
               ),
+
+
               Obx( () => ListView.separated(
                 padding: EdgeInsets.symmetric(horizontal: 0, vertical: 12),
                 physics:BouncingScrollPhysics(),

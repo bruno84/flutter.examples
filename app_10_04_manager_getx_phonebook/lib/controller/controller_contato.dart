@@ -10,6 +10,7 @@ class ControllerContato extends GetxController
 
   adicionar(Contato c){
     _listaRX.add(c);
+    update(); // OBS: só necessário se usar GetBuilder
   } 
 
   Contato remover(int index){
