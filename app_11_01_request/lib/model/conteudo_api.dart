@@ -9,12 +9,14 @@ class ConteudoApi
     // OBS: força um delay. ùtil para testes.
     Future.delayed(Duration(seconds: 5));
 
+    // monta request
     var url = Uri.https("jsonplaceholder.typicode.com", "/todos/");
-
     print("GET: $url");
 
-    // requisicao
+    // executa request
     var response = await http.get(url);
+    print("headers: ${response.headers}");
+    print("statusCode: ${response.statusCode}");
 
     // trata problema na requisição
     if(response.statusCode != 200) {
@@ -23,9 +25,9 @@ class ConteudoApi
 
     // obtem body do request
     String json = response.body;
-    //print("json: $json");
+    print("json: $json");
 
-    // obtem list do json
+    // obtem list do json (lib: convert)
     List listJson = jsonDecode(json);
     //print("listJson: $listJson");
 

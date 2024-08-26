@@ -12,19 +12,19 @@ class PageHome extends StatefulWidget
 class _PageHome extends State<PageHome>
 {
   List<Conteudo> listConteudo = [];
+  bool loading = false;
 
   @override
   void initState()
   {
     super.initState();
-
     _loadList();
   }
 
   Future<List<Conteudo>> _loadList() async
   {
     listConteudo = await ConteudoApi.getListConteudo();
-
+    loading = true;
     return listConteudo;
   }
 
@@ -40,6 +40,17 @@ class _PageHome extends State<PageHome>
     );
   }
 
+  /*
+    loading: duas formas:
+      1)
+          initialData: "Carregando..."
+          ...
+          if (snapshot.hasData == true) { ... }
+      2)
+        bool loading
+   */
+
+
   _body(BuildContext context)
   {
     return Container(
@@ -48,9 +59,9 @@ class _PageHome extends State<PageHome>
             //initialData: "Carregando...",
             builder: (context, snapshot)
             {
-              if (snapshot.hasData)
+              if(loading == true)
               {
-                String text = snapshot.data.toString();
+                String text = listConteudo.toString();
 
                 return Center(
                   child: Text(text),
@@ -59,21 +70,12 @@ class _PageHome extends State<PageHome>
               else
               {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(),   // loading
                 );
               }
             }
         )
     );
   }
-
-
-
-
-
-
-
-
-
 
 }
