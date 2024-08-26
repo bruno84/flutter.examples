@@ -8,7 +8,7 @@
 PRODUCT_NAME = app_11_02_request_list
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.app1102RequestList
+PRODUCT_BUNDLE_IDENTIFIER = br.edu.brunomonteiro.app1102RequestList
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 br.edu.brunomonteiro. All rights reserved.
