@@ -2,9 +2,9 @@ import 'package:app_15_01_sqlite/model/estado.dart';
 import 'package:app_15_01_sqlite/sqlite/dao/pais_dao.dart';
 import 'package:sqflite/sqlite_api.dart';
 import '../app_database.dart';
-import 'dao.dart';
+import 'interface_dao.dart';
 
-class EstadoDao implements Dao<Estado>
+class EstadoDao implements InterfaceDao<Estado>
 {
   @override
   final tableName = 'estado';

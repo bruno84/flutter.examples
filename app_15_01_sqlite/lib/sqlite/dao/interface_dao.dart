@@ -1,12 +1,14 @@
 
-abstract class Dao<T>
+/*
+  interface implementada pelas classes DAO das entidades
+ */
+abstract class InterfaceDao<T>
 {
   String get createTableQuery;
   String get deleteAllRowsQuery;
   String get tableName;
   String get id;
 
-  // Metodos abstratos de mapeamento
   Future<T> fromMap(Map<String, dynamic> query);
   Future<List<T>> fromList(List<Map<String, dynamic>> query);
   Map<String, dynamic> toMap(T object);

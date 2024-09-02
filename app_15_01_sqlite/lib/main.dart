@@ -6,6 +6,12 @@ void main() {
   runApp(Main());
 }
 
+/*
+  pubspec.yaml:
+    dependencies
+    dev_dependencies
+ */
+
 class Main extends StatelessWidget
 {
   // brightness: light ou dark

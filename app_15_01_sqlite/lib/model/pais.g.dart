@@ -12,6 +12,6 @@ Pais _$PaisFromJson(Map<String, dynamic> json) => Pais(
     );
 
 Map<String, dynamic> _$PaisToJson(Pais instance) => <String, dynamic>{
-//      'id': instance.id,    // OBS: comentar esta linha, para autoincrement
+      'id': instance.id,    // OBS: comentar esta linha, para autoincrement
       'nome': instance.nome,
     };

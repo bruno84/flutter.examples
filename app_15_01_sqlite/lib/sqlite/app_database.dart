@@ -7,6 +7,7 @@ Future<Database> getDatabase() async
 {
   final String dbPath = await getDatabasesPath();
   final String path = join(dbPath, 'bruno1.db');
+  // Abrir painel: View -> Device Explorer
   // Salvo em: data/data/<package_name>/databases
   // Exemplo de programa para abrir db files: sqlitebrowser.org
   // Exemplo de sistema web para abrir db files: inloop.github.io/sqlite-viewer

@@ -14,10 +14,12 @@ class PageHome extends StatefulWidget
 
 class _PageHomeState extends State<PageHome>
 {
-  PaisDb paisDb = PaisDb();
-  EstadoDb estadoDb = EstadoDb();
   TextEditingController _contID = TextEditingController();
   late String str;
+
+  // repository:
+  PaisDb paisDb = PaisDb();
+  EstadoDb estadoDb = EstadoDb();
 
   @override
   void initState() {
@@ -68,6 +70,7 @@ class _PageHomeState extends State<PageHome>
             SizedBox(height: 10),
             CompElevatedButton("Delete Estado", _onClickDeleteEstado, height: 30, fontSize: 16, colorBG: Colors.blue),
             SizedBox(height: 20),
+
             CompElevatedButton("DELETE ALL ROWS", _onClickDeleteAllRows, height: 30, fontSize: 16, colorBG: Colors.red),
             Text( str ),
           ],
