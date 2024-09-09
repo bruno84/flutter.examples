@@ -2,7 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'comp/comp_textformfield.dart';
+
 
 class PageHome extends StatefulWidget
 {
@@ -15,6 +18,21 @@ class _PageHomeState extends State<PageHome>
   // Completer: permite fazer requisicoes para APIs
   Completer<GoogleMapController> _completerGoogle = Completer();
   TextEditingController _contBuscar = TextEditingController();
+
+  @override
+  void initState()
+  {
+    super.initState();
+    _initializeMapRenderer();
+  }
+
+  void _initializeMapRenderer()
+  {
+    final GoogleMapsFlutterPlatform mapsImplementation = GoogleMapsFlutterPlatform.instance;
+    if (mapsImplementation is GoogleMapsFlutterAndroid) {
+      mapsImplementation.useAndroidViewSurface = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context)

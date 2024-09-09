@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'comp/comp_elevatedbutton.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'comp/comp_elevatedbutton.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 
 class PageHome extends StatefulWidget
 {
@@ -30,10 +32,19 @@ class _PageHomeState extends State<PageHome>
   {
     super.initState();
 
+    _initializeMapRenderer();
+
     _setMarker = _getListMarker();
     _setPolyline = _getListPolyline();
     _target = _gps1();
     _listenerLocalizacao();
+  }
+
+  void _initializeMapRenderer() {
+    final GoogleMapsFlutterPlatform mapsImplementation = GoogleMapsFlutterPlatform.instance;
+    if (mapsImplementation is GoogleMapsFlutterAndroid) {
+      mapsImplementation.useAndroidViewSurface = true;
+    }
   }
 
   @override
@@ -129,8 +140,8 @@ class _PageHomeState extends State<PageHome>
   _listenerLocalizacao()
   {
     Geolocator.getPositionStream(
-        desiredAccuracy: LocationAccuracy.high,
-        distanceFilter: 10
+        //desiredAccuracy: LocationAccuracy.high,
+        //distanceFilter: 10
     ).listen((Position position)
     {
       print("position stream: " + position.toString() );
