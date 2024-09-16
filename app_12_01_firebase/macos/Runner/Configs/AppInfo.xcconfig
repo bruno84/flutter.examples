@@ -11,4 +11,4 @@ PRODUCT_NAME = app_12_01_firebase
 PRODUCT_BUNDLE_IDENTIFIER = br.edu.ufersa.app1201Firebase
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 br.edu.ufersa. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 br.edu.ufersa. All rights reserved.

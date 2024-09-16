@@ -4,6 +4,74 @@ import 'package:flutter/material.dart';
 import 'pages/page_login.dart';
 import 'firebase_options.dart';
 
+/*
+--------------------------------------------------------------------------------
+CONFIGURAR FIREBASE (Flutter, para todas as plataformas)
+--------------------------------------------------------------------------------
+1) Entrar em Firebase Console: https://console.firebase.google.com/
+
+2) Criar novo projeto.
+
+3) "Adicione um app para começar" -> "Flutter"
+
+4) "Instalar a CLI do Firebase e fazer login (execute firebase login)":
+* Instalar: Node.JS e Firebase CLI para Windows (por meio do npm)
+* Atenção: instale por meio do NodeJS e modo NPM. Se instalar pelo modo "binário autônomo" vai tar erro no próximo passo.
+* Fazer login, conforme instruções que vão surgir: fazer login Google para obter código de acesso.
+* Se der tudo certo, ao executar "firebase login" em firebase-tools-instant-win, vai aparecer: Already logged in as <seu email>
+
+5) Configurar o CLI do FlutterFire (a pior parte):
+* Abrir CMD apontando para seu projeto (ex: D:\WSS\WSS_Flutter_2024_1\app_12_01_firebase>):
+* Executar: dart pub global activate flutterfire_cli
+* Após isso, talvez seja preciso adicionar a pasta bin exibida no console no seu "path" (ex: C:\Users\bruno.monteiro\AppData\Local\Pub\Cache\bin)
+* Executar no CMD, apontando para seu projeto: flutterfire configure --project=<ID do seu projeto Firebase>
+* Habilite para as 4 plataformas.
+* Informe seu applicationId (ex: br.edu.ufersa.app_12_01_firebase)
+* Observação: seu applicationId pode ser encontrado em: android/app/build.gradle
+* Atenção: meu prompt ficou quabrado neste momento, porém, para saber se deu certo o arquivo "firebase_options.dart" vai ser criado em lib.
+
+--------------------------------------------------------------------------------
+CONFIGURAR FIREBASE (continuação para Android)
+--------------------------------------------------------------------------------
+1) Abrir Firebase Console: https://console.firebase.google.com/
+Visão geral do projeto -> "Configurações do projeto" -> APP: Android
+
+2) Copiar arquivo google-services.json
+Copie este arquivo na pasta: android/app/
+
+3) Configurar Gradle:
+
+
+OBSERVAÇÃO: Obter chave SHA1:
+* Em CMD, acesse a pasta: C:\Program Files\Android\Android Studio\jbr\bin
+* Em seguida execute o comando abaixo:
+keytool -list -v -keystore "C:\Users\<user>\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+(ex: keytool -list -v -keystore "C:\Users\bruno.monteiro\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android)
+
+DICA: Procure por "Bruno" neste exemplo para encontrar configurações específicas.
+
+--------------------------------------------------------------------------------
+CONFIGURAR SERVIÇOS FIREBASE
+--------------------------------------------------------------------------------
+https://console.firebase.google.com/
+
+Serviço: Criação -> Authentication
+Habilite os métodos de entrada desejados.
+Ex: Google, email/senha
+
+Serviço: Criação -> Firestore Databse
+Crie um novo BD.
+Na aba "Regras", use uma dessas regras:
+a) Banco totalmente aberto:
+allow read, write: if true;
+b) Banco liberado apenas para usuários autenticados:
+allow read, write: if request.auth != null;
+
+Serviço: Criação -> Storage
+Habilite o serviço.
+
+*/
+
 void main() async
 {
   // Bruno: FireBase
@@ -12,78 +80,6 @@ void main() async
 
   runApp( Main() );
 }
-
-/*
-CONFIGURAR FIREBASE (Flutter, para todas as plataformas):
-1) Firebase Console:
-https://console.firebase.google.com/
-
-1.1) Criar novo projeto.
-"Adicione um app para começar -> Flutter"
-
-1.2) Instale FlutterFire CLI (por meio do NodeJS)
-Habilite para as 4 plataformas.
-
-1.3) Faça login e siga o wizard para gerar o arquivo firebase_options.dart em lib.
-
-OBS: o projeto Firebase é criado também no Google Cloud Console
-https://console.cloud.google.com/
-
-
-CONFIGURAR FIREBASE (continuação para Android):
-1) Firebase Console:
-https://console.firebase.google.com/
-Visão geral do projeto -> APP: Android
-
-1.1) Campo: pacote da app:
-Pode-se encontrar em: android/app/build.gradle
-Ex: org.brunomonteiro.app_12_01_firebase
-
-1.2) Campo: SHA1
-Para conseguir o SHA1, execute o comando no terminal:
-keytool -list -v -keystore C:\Users\{User}\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
-Exemplo:
-keytool -list -v -keystore C:\Users\bruno.monteiro\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
-
-1.3) Copiar arquivo google-services.json
-Copie este arquivo na pasta: android/app/
-
-1.4) Firebase: E-mail para Suporte
-FireBase Console -> Project Settings
-Preencha Support email.
-
-1.5) Habilitar Google SignIn:
-FireBase Console -> Authentication -> aba: SignIn Method -> Habilitar: Google
-
-1.6) Projeto Firebase é criado também no Google Cloud Console
-https://console.cloud.google.com/
-Tela de permissão OAuth -> Externa -> preencher formulário
-
-ATENÇÃO:
-Procure por "Bruno" neste exemplo para encontrar configurações específicas.
-
-*/
-
-
-/*
-CONFIGURAR SERVIÇOS FIREBASE:
-https://console.firebase.google.com/
-
-Serviço: Authentication
-1) Habilite os métodos de entrada desejados.
-Ex: Google, email/senha
-
-Serviço: Firestore Databse
-1) Crie um novo BD.
-
-2) Na aba "Regras", use uma dessas regras:
-a) Banco totalmente aberto:
-allow read, write: if true;
-b) Banco liberado apenas para usuários autenticados:
-allow read, write: if request.auth != null;
-
-*/
-
 
 class Main extends StatelessWidget
 {

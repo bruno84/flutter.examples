@@ -1,51 +1,26 @@
 {
   "project_info": {
-    "project_number": "171192914315",
-    "project_id": "flutter2023-132c8",
-    "storage_bucket": "flutter2023-132c8.appspot.com"
+    "project_number": "764648321125",
+    "project_id": "fir-2024-3f602",
+    "storage_bucket": "fir-2024-3f602.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:171192914315:android:5019d68a43ddc910245f8e",
+        "mobilesdk_app_id": "1:764648321125:android:f6fff9cbc6420ee4ba168c",
         "android_client_info": {
           "package_name": "br.edu.ufersa.app_12_01_firebase"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "171192914315-q1jgohfrnlaik2uti97acufho0hoiagk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "br.edu.ufersa.app_12_01_firebase",
-            "certificate_hash": "bab71af609e77cfd7a8e95f9fa62efffd6a0bafd"
-          }
-        },
-        {
-          "client_id": "171192914315-0ol05mgqtcmoapa4fne1jlh0jjegoc2v.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD2zRf5o5Yu1p_xaSwkIVSQGS1tpIl9Br4"
+          "current_key": "AIzaSyAFoWVB6yxqLEFkyJPc1K_UBuITR4QoIkk"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "171192914315-0ol05mgqtcmoapa4fne1jlh0jjegoc2v.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "171192914315-g1vu5u9lotc4d78mj58avmgf428tr149.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "br.edu.ufersa.app1201Firebase.RunnerTests"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
